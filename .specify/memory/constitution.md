@@ -1,55 +1,62 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- Sync Impact Report -->
+<!-- Version change: 0.0.0 → 1.0.0 -->
+<!-- Modified principles: All new -->
+<!-- Added sections: Folder Structure & Documentation Standards, Contribution & Quality Workflow -->
+<!-- Removed sections: None -->
+<!-- Templates requiring updates: .specify/templates/plan-template.md ⚠ pending, .specify/templates/spec-template.md ⚠ pending, .specify/templates/tasks-template.md ⚠ pending, .specify/templates/commands/*.md ⚠ pending -->
+<!-- Follow-up TODOs: None -->
+# Physical AI & Humanoid Robotics Book Project Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-Driven Development
+All features and content MUST originate from a clear, concise, and machine-readable specification.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Modular Content
+Each book section, chapter, or major topic MUST be treated as a modular unit, independently developable, testable, and documentable.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Docusaurus Best Practices
+Adhere to Docusaurus configuration guidelines, theme customization, and content structuring for optimal performance and maintainability.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. AI-Assisted Content Generation
+AI agents MUST be instructed with clear prompts, provide content that adheres to factual accuracy and style guides, and facilitate iterative refinement.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Clear Naming Conventions
+Standardize file, folder, variable, and component naming to enhance readability, searchability, and maintainability.
 
-### [PRINCIPLE_6_NAME]
+### VI. Versioned Releases
+Content updates and major revisions MUST follow semantic versioning, with clear release notes for each published version.
 
+## Folder Structure & Documentation Standards
+- **Folder Structure:**
+    - `docs/`: Markdown files for book content. Structured hierarchically by chapters/sections.
+    - `src/pages/`: Additional standalone pages (e.g., About, Contributors).
+    - `static/`: Static assets (images, PDFs).
+    - `.github/`: GitHub-specific configs (workflows, issue templates).
+    - `.specify/`: SpecKit Plus templates and scripts.
+    - `history/`: Prompt History Records (PHRs) and Architectural Decision Records (ADRs).
+- **Documentation Standards:**
+    - All content MUST be written in GitHub-flavored Markdown.
+    - Code examples MUST be accurate, tested, and properly formatted with language highlighting.
+    - Diagrams and illustrations SHOULD be provided for complex concepts.
+    - External references MUST be cited with appropriate links.
 
-[PRINCIPLE__DESCRIPTION]
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Contribution & Quality Workflow
+- **Contribution Workflow:**
+    - All changes MUST be proposed via Pull Requests (PRs).
+    - PRs require at least one approving review before merging.
+    - Feature branches MUST be used for all development.
+    - Commit messages MUST follow Conventional Commits specification.
+- **Quality & Testing Guidelines:**
+    - Content accuracy MUST be verified (human review + automated checks where possible).
+    - Code examples MUST pass automated tests (if applicable).
+    - Docusaurus build MUST pass without errors or warnings.
+    - Accessibility (a11y) guidelines SHOULD be considered for all new UI components/content.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+- **Amendment Procedure:** Amendments to this constitution MUST be proposed via PRs, undergo review, and require unanimous approval from core contributors.
+- **Versioning Policy:** This constitution itself follows semantic versioning.
+- **Compliance Review:** Regular reviews (at least quarterly) MUST be conducted to ensure ongoing adherence and relevance of these principles.
+- **Supersedes:** This constitution supersedes all other informal practices or guidelines.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-04

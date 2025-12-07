@@ -1,0 +1,14 @@
+# Node.js/JavaScript/TypeScript
+node_modules/
+dist/
+build/
+*.log
+.env*
+.docusaurus/
+.prettierignore
+.eslintrc*
+eslint.config.*
+.prettierrc*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
