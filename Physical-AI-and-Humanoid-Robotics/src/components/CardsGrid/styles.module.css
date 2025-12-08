@@ -1,32 +1,24 @@
-/* .cardsGridSection > .container > .row {
-    margin-left: -0.75rem; 
-    margin-right: -0.75rem;
-} */
 
-/* Custom class for grid item */
 .cardGridItem {
-    /* Critical Fix: Ensure padding is included within the width */
-    box-sizing: border-box;
     
-    /* Default (Mobile) - 1 column: 100% width */
+    box-sizing: border-box;
     width: 100%;
     padding: 0 0.5rem; 
 }
 
-/* Tablet layout: 2 columns (>= 769px and <= 996px) */
+
 @media (min-width: 769px) and (max-width: 996px) {
-    /* Tablet - 2 columns: 50% width */
     .cardGridItem {
         width: 50%;
         padding: 0 0.75rem;
     }
 }
 
-/* Laptop and larger layout: 3 columns (>= 997px) */
+
 @media (min-width: 997px) {
-    /* Laptop/Desktop - 3 columns: Reduced width for guaranteed fit */
+    
     .cardGridItem {
-        width: 33.33%; /* Reduced from 33.3333% to ensure no wrapping */
+        width: 30%; 
         padding: 0 0.75rem; 
     }
 }
