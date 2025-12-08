@@ -12,6 +12,10 @@ This module introduces students to the concepts and practical application of dig
 *   **Simulate Physics & Interactions**: Understand how to simulate realistic physics, gravity, collisions, and joint dynamics for robotic systems in Gazebo.
 *   **Integrate Unity for High-Fidelity Rendering**: Describe the advantages of using Unity for realistic visualization and human-robot interaction (HRI) in conjunction with ROS 2.
 *   **Implement Basic Unity-ROS 2 Communication**: Develop basic Unity applications that can send and receive data from ROS 2 nodes, enabling control and telemetry of simulated robots.
+
+![Simulation Environment Integration](/img/simulation-environment-integration.png)
+*Note: Flow Diagram Showing how simulation environments integrate with ROS 2.*
+
 *   **Simulate Various Sensors**: Configure and utilize simulated sensors such as LiDAR, Depth Cameras, and Inertial Measurement Units (IMUs) within Gazebo and/or Unity, and understand how to interpret their data.
 *   **Develop Basic Robotics Applications in Simulation**: Create ROS 2 nodes that control simulated robots, process sensor data, and execute simple tasks within a digital twin environment.
 

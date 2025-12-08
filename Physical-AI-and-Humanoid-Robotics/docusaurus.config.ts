@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics',
   tagline: 'A comprehensive guide to Physical AI, Humanoid Robotics, and Advanced Simulation',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -22,8 +22,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-org', // Usually your GitHub org/user name.
-  projectName: 'physical-ai-book', // Usually your repo name.
+  organizationName: 'TahaAliAbbasi', // Usually your GitHub org/user name.
+  projectName: 'Physical-AI-and-Humanoid-Robotics', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -44,7 +44,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/your-org/physical-ai-book/tree/main/',
+            'https://github.com/TahaAliAbbasi/Spec-Driven-Development/tree/main/Physical-AI-and-Humanoid-Robotics',
         },
         blog: {
           showReadingTime: true,
@@ -55,7 +55,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/your-org/physical-ai-book/tree/main/',
+            'https://github.com/TahaAliAbbasi/Spec-Driven-Development/tree/main/Physical-AI-and-Humanoid-Robotics',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -75,10 +75,10 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Physical AI & Humanoid Robotics',
+      title: 'Home page',
       logo: {
         alt: 'Physical AI & Humanoid Robotics Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
@@ -89,7 +89,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/your-org/physical-ai-book',
+          href: 'https://github.com/TahaAliAbbasi/Spec-Driven-Development/tree/main/Physical-AI-and-Humanoid-Robotics',
           label: 'GitHub',
           position: 'right',
         },
@@ -102,25 +102,42 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Introduction',
               to: '/docs/intro',
             },
+            {
+              label: 'Module 1',
+              to: '/docs/module1',
+            },
+            {
+              label: 'Module 2',
+              to: '/docs/module2',
+            },
+            {
+              label: 'Module 3',
+              to: '/docs/module3',
+            },
+            {
+              label: 'Module 4',
+              to: '/docs/module4',
+            },
+            {
+              label: 'Capstone Project',
+              to: '/docs/module5',
+            },
+            
           ],
         },
         {
-          title: 'Community',
+          title: 'Contact',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Taha Ali Abbasi GitHub',
+              href: 'https://github.com/TahaAliAbbasi',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Gmail',
+              href: 'mailto:tahaaliabbasi333@gmail.com',
             },
           ],
         },
@@ -133,7 +150,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/TahaAliAbbasi/Spec-Driven-Development/tree/main/Physical-AI-and-Humanoid-Robotics',
             },
           ],
         },

@@ -8,6 +8,8 @@ sidebar_position: 1
 This module explores the integration of Vision-Language-Action (VLA) models in robotics, focusing on how artificial intelligence can interpret natural language commands and perform visual tasks. Students will learn to implement systems that bridge human communication with robot action. Upon completion, students will be able to:
 
 *   **Understand VLA Model Fundamentals**: Explain the principles behind Vision-Language-Action models and their role in advanced robotics applications.
+![VLA Process Flow](/img/vla-process-flow.png)
+*Note: Flow diagram showing the Vision-Language-Action pipeline.*
 *   **Implement Voice Command Recognition**: Integrate OpenAI Whisper or similar ASR (Automatic Speech Recognition) systems to convert spoken commands into text for robotic systems.
 *   **Design Cognitive Planning Systems**: Use Large Language Models (LLMs) to translate natural language instructions into sequences of ROS 2 actions for robot execution.
 *   **Integrate Vision Systems with Language**: Combine computer vision outputs with language processing to enable robots to understand and act upon visual commands.

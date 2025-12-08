@@ -6,7 +6,7 @@ This directory contains images and diagrams referenced in the Physical AI & Huma
 
 The following diagrams should be created for the book:
 
-### system-architecture.svg
+### system-architecture.png
 - **Used in:** docs/intro.md
 - **Description:** High-level architecture showing the integration of ROS 2, simulation environments, AI components, and robot platforms
 - **Elements to include:**
@@ -16,7 +16,7 @@ The following diagrams should be created for the book:
   - Sensor data flowing back to AI components
   - Bidirectional arrows showing communication flow
 
-### vla-process-flow.svg
+### vla-process-flow.png
 - **Used in:** docs/module4/README.md
 - **Description:** Flow diagram showing the Vision-Language-Action pipeline
 - **Elements to include:**
@@ -27,7 +27,7 @@ The following diagrams should be created for the book:
   - Robot action output
   - Visual perception feedback loop
 
-### ros2-communication-patterns.svg
+### ros2-communication-patterns.png
 - **Used in:** docs/module1/chapter2.md
 - **Description:** Diagram showing ROS 2 communication patterns
 - **Elements to include:**
@@ -37,7 +37,7 @@ The following diagrams should be created for the book:
   - Services and clients
   - Example message flows
 
-### simulation-environment-integration.svg
+### simulation-environment-integration.png
 - **Used in:** docs/module2/README.md, docs/module3/README.md
 - **Description:** Showing how simulation environments integrate with ROS 2
 - **Elements to include:**

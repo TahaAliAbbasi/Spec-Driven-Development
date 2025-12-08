@@ -21,7 +21,7 @@ This book is structured into five core modules:
 
 The following diagram illustrates the high-level architecture of a Physical AI system:
 
-![System Architecture](/img/system-architecture.svg)
+![System Architecture](/img/system-architecture.png)
 
 *Note: This diagram shows the integration of ROS 2 for communication, simulation environments for testing, AI components for perception and planning, and the physical or simulated robot platform.*
 

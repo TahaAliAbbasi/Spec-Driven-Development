@@ -21,6 +21,9 @@ These learning outcomes will guide the content and exercises for this chapter.
 
 ROS 2 (Robotic Operating System 2) is a flexible framework for writing robot software. It provides a standardized way for different components of a robotics system to communicate and work together. At its core, ROS 2 is about distributed communication, enabling various software modules (nodes) to exchange information.
 
+![ROS 2 Communication Patterns](/img/ros2-communication-patterns.png)
+*Note: Flow Diagram showing ROS 2 communication patterns.*
+
 ### ROS 2 Nodes
 
 A **node** is the fundamental unit of computation in ROS 2. It's an executable process that performs a specific task. A robot control system typically consists of many nodes, each responsible for a small, modular function (e.g., a camera driver, a motor controller, a navigation algorithm).

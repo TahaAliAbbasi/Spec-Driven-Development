@@ -12,6 +12,10 @@ This module explores NVIDIA Isaac Sim and Isaac ROS, advanced platforms for robo
 *   **Leverage Photorealistic Simulation**: Understand how Isaac Sim's photorealistic rendering and USD (Universal Scene Description) framework enable highly realistic virtual environments and sensor data generation.
 *   **Generate Synthetic Data**: Implement techniques for generating synthetic datasets within Isaac Sim for training robust AI models, addressing challenges like domain randomization.
 *   **Utilize Isaac ROS Components**: Integrate and configure key Isaac ROS components (e.g., VSLAM, Navigation, Perception) into ROS 2 systems for accelerated on-robot AI.
+
+![Simulation Environment Integration](/img/simulation-environment-integration.png)
+*Note: Flow Diagram Showing how simulation environments integrate with ROS 2.*
+
 *   **Implement Nav2 for Humanoid Movement**: Apply the ROS 2 Navigation Stack (Nav2) for path planning, localization, and control of humanoid robots in complex environments.
 *   **Develop Advanced Robotics Applications**: Create sophisticated robotics applications that combine high-fidelity simulation, accelerated AI components, and advanced navigation strategies.
 *   **Troubleshoot Isaac Platform Issues**: Identify and resolve common issues related to Isaac Sim setup, performance, ROS 2 integration, and AI component deployment.

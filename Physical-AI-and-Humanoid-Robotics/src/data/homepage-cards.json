@@ -1,0 +1,42 @@
+[
+  {
+    "id": "module1-card",
+    "title": "Module 1",
+    "description": "This module introduces students to the Robotic Operating System 2 (ROS 2), the foundational middleware for developing complex robotics applications.",
+    "imageUrl": "/img/module1.png",
+    "link": "/docs/module1",
+    "order": 1
+  },
+  {
+    "id": "module2-card",
+    "title": "Module 2",
+    "description": "Advanced topics in Physical AI and Humanoid Robotics - Module 2",
+    "imageUrl": "/img/module2.png",
+    "link": "/docs/module2",
+    "order": 2
+  },
+  {
+    "id": "module3-card",
+    "title": "Module 3",
+    "description": "Practical applications in Physical AI and Humanoid Robotics - Module 3",
+    "imageUrl": "/img/module3.png",
+    "link": "/docs/module3/",
+    "order": 3
+  },
+  {
+    "id": "module4-card",
+    "title": "Module 4",
+    "description": "Advanced implementations in Physical AI and Humanoid Robotics - Module 4",
+    "imageUrl": "/img/module4.png",
+    "link": "/docs/module4/",
+    "order": 4
+  },
+  {
+    "id": "capstone-card",
+    "title": "Capstone Project",
+    "description": "Comprehensive project integrating all modules of Physical AI and Humanoid Robotics",
+    "imageUrl": "/img/capstone.png",
+    "link": "/docs/module5",
+    "order": 5
+  }
+]
