@@ -5,6 +5,7 @@
 **Status**: Draft
 **Input**: User description: "At home page of my docusaurus web i want to add 5 cards as i have 4 modules and capstone project, it is avilable in docs but i want to add their cards at home page so user can navigate to them by clicking them, the card should contain an image, title, short description and a button named "read more" which navigates user to its documentation."
 
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Homepage Navigation Enhancement (Priority: P1)

@@ -1,5 +1,6 @@
 # Data Model: Homepage Cards
 
+
 ## Card Entity
 
 **Attributes**:

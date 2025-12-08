@@ -43,6 +43,7 @@ import CardsGrid from '@site/src/components/CardsGrid';
 <CardsGrid />
 ```
 
+
 ## Data Configuration
 Card content is managed through the `homepage-cards.json` file. See `src/data/README.md` for detailed information about the configuration format.
 

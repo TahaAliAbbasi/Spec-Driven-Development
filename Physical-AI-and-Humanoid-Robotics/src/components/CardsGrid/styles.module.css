@@ -23,7 +23,6 @@
     }
 }
 
-/* Cleanup for margin responsiveness */
 @media (max-width: 996px) {
    .cardItem {
      margin-bottom: 1.5rem;

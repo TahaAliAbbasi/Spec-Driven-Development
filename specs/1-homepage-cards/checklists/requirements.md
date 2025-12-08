@@ -4,6 +4,7 @@
 **Created**: 2025-12-08
 **Feature**: [Link to spec.md](../spec.md)
 
+
 ## Content Quality
 
 - [x] No implementation details (languages, frameworks, APIs)

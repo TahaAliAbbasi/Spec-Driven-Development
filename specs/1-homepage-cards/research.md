@@ -1,5 +1,6 @@
 # Research Findings: Add 5 Module Cards to Homepage
 
+
 ## Decision: Card Component Implementation
 **Rationale**: Using Docusaurus's built-in support for React components in MDX files provides the most flexible and maintainable approach for implementing the homepage cards.
 

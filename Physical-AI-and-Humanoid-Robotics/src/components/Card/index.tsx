@@ -40,5 +40,6 @@ export default function Card({title, description, imageUrl, link, className}: Ca
         </div>
       </div>
     </div>
+    
   );
 }

@@ -5,6 +5,7 @@
 **Created**: 2025-12-08
 **Status**: Draft
 
+
 ## Technical Context
 
 This implementation will add 5 cards to the Docusaurus homepage representing 4 modules and 1 capstone project. Each card will contain an image, title, short description, and "read more" button that navigates to the corresponding documentation.

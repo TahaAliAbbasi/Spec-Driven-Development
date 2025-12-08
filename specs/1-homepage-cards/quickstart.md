@@ -3,6 +3,7 @@
 ## Overview
 This guide provides a quick reference for implementing the homepage cards feature for the Docusaurus website.
 
+
 ## Prerequisites
 - Node.js and npm installed
 - Docusaurus project set up
