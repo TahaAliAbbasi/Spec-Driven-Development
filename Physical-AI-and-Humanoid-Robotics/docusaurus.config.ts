@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics',
-  tagline: 'A comprehensive guide to Physical AI, Humanoid Robotics, and Advanced Simulation',
+  tagline: 'A comprehensive guide to Physical AI, Humanoid Robotics, and advanced simulation tools. This book takes you from robot control with ROS 2 to photorealistic digital twins and AI-driven humanoid behavior. Designed for learners who want to bring intelligent robots to life.',
   favicon: 'img/logo.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future

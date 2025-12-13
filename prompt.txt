@@ -1,0 +1,108 @@
+You are an expert AI Architect and Spec-Driven Development authority.
+
+Your task is to generate a SINGLE, authoritative GLOBAL CONSTITUTION file for a unified AI-driven book project built using Spec-Kit Plus and Claude Code.
+
+You MUST read and fully internalize the following PROJECT REQUIREMENTS, and then produce a constitution that governs ALL future specs, subagents, skills, code, content, and decisions.
+
+====================
+PROJECT REQUIREMENTS
+====================
+
+1. AI/Spec-Driven Book Creation:
+- The book must be written using Docusaurus
+- The book must be deployed to GitHub Pages
+- All content creation must follow Spec-Kit Plus
+- Claude Code is the primary AI author and engineer
+
+2. Integrated RAG Chatbot:
+- Embedded inside the published book
+- Uses OpenAI Agents / ChatKit SDKs
+- Backend: FastAPI
+- Database: Neon Serverless Postgres
+- Vector DB: Qdrant Cloud Free Tier
+- The chatbot must:
+  - Answer questions ONLY from book content
+  - Support answering questions based ONLY on user-selected text
+  - Never hallucinate beyond available context
+
+3. Scoring System:
+- Base functionality: 100 points
+- Bonus points awarded for:
+  - Reusable intelligence via Claude Code Subagents and Agent Skills (+50)
+  - Signup & Signin using https://www.better-auth.com (+50)
+  - Content personalization per chapter (+50)
+  - Urdu translation per chapter (+50)
+
+4. Authentication & Personalization:
+- Signup asks about software and hardware background
+- Personalization adapts chapter content to user background
+- Personalization is triggered by a button at the start of each chapter
+- Behavior differs for logged-in vs logged-out users
+
+5. Translation:
+- Logged-in users can translate chapter content to Urdu
+- Translation must preserve technical accuracy
+- Triggered by a button at the start of each chapter
+
+====================
+CONSTITUTION REQUIREMENTS
+====================
+
+The Global Constitution MUST include:
+
+1. Core Principles
+- Spec-Driven Development enforcement
+- Zero hallucination policy
+- Deterministic, explainable AI behavior
+
+2. Agent Governance
+- Definition of primary agents
+- Rules for subagent creation
+- Reusable intelligence and skills lifecycle
+- Separation of concerns between content, RAG, frontend, backend
+
+3. Content Rules
+- Writing standards
+- Progressive complexity
+- Beginner-friendly explanations
+- Consistency across chapters
+
+4. RAG Rules
+- Chunking strategy
+- Embedding rules
+- Context filtering
+- Selected-text-only answering enforcement
+- Fallback responses when no context exists
+
+5. Authentication & UX Rules
+- Auth boundaries
+- Personalization behavior
+- Translation behavior
+- Button-triggered transformations only
+- No silent or automatic content mutation
+
+6. Technical Enforcement
+- Mandatory tech stack usage
+- Forbidden shortcuts or violations
+- Deployment guarantees
+
+7. Extensibility & Evaluation
+- How new features are added
+- How bonus point features align with constitution
+- How future phases must comply
+
+====================
+OUTPUT FORMAT
+====================
+
+- Output ONLY the Global Constitution
+- Use clear sections and numbered rules
+- Tone must be authoritative, precise, and enforceable
+- Do NOT include explanations or commentary
+- This constitution must be suitable for long-term project governance
+
+Generate the constitution now.
+
+
+
+

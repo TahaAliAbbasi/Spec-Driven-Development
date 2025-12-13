@@ -1,0 +1,120 @@
+You are an expert RAG Systems Architect and Spec-Driven Development authority.
+
+Generate a COMPLETE, production-ready SPECIFICATION for **Phase 1: Knowledge Ingestion & Vectorization** of an Integrated RAG Chatbot system.
+
+This specification MUST strictly follow the existing Global Constitution of the project and MUST be compatible with Spec-Kit Plus workflows.
+
+====================
+PROJECT CONTEXT
+====================
+
+The project is a unified AI-driven book published using Docusaurus and deployed on Vercel.
+
+The long-term goal is to embed a Retrieval-Augmented Generation (RAG) chatbot inside the book.  
+This spec ONLY covers Phase 1 of the RAG pipeline.
+
+====================
+PHASE 1 OBJECTIVES
+====================
+
+Phase 1 is responsible for:
+
+1. Discovering and validating the deployed book URLs
+2. Extracting clean, structured textual content from the website
+3. Chunking content using a deterministic and reproducible strategy
+4. Generating embeddings using Cohere embedding models
+5. Storing vectors and metadata in Qdrant Cloud
+
+====================
+MANDATORY TECHNOLOGY
+====================
+
+- Embedding Provider: Cohere
+- Vector Database: Qdrant Cloud (Free Tier)
+- Backend Language: Python (keep the logic in one file named main.py)
+- use uv package manager
+- Architecture must be compatible with FastAPI (even if not used yet)
+- Output must be usable by OpenAI Agents SDK in later phases
+
+====================
+SPECIFICATION REQUIREMENTS
+====================
+
+The specification MUST include:
+
+1. **Scope & Non-Scope**
+   - Explicitly define what Phase 1 does and does NOT do
+
+2. **Input Sources**
+   - How website URLs are discovered
+   - Constraints on crawling (no JS execution assumptions)
+   - Handling of invalid or unreachable pages
+
+3. **Content Extraction Rules**
+   - HTML parsing strategy
+   - Removal of navigation, footer, ads, and boilerplate
+   - Preservation of headings, code blocks, and semantic structure
+
+4. **Chunking Strategy**
+   - Chunk size and overlap
+   - Deterministic chunk IDs
+   - Chapter/section-aware chunking
+   - Guarantees for reproducibility
+
+5. **Embedding Rules**
+   - Cohere model selection rationale
+   - Batch sizing
+   - Rate-limit handling
+   - Failure recovery strategy
+
+6. **Vector Storage Schema**
+   - Qdrant collection design
+   - Vector dimensions
+   - Payload / metadata schema including:
+     - source_url
+     - chapter
+     - section
+     - chunk_id
+     - language
+     - versioning
+
+7. **Data Validation & Integrity**
+   - Verification steps before insertion
+   - Deduplication strategy
+   - Idempotent re-runs
+
+8. **Observability**
+   - Logging requirements
+   - Metrics (pages processed, chunks created, embeddings stored)
+   - Error classification
+
+9. **Security & Compliance**
+   - API key handling
+   - No storage of secrets in code
+   - Compliance with Global Constitution’s zero-hallucination policy
+
+10. **Deliverables**
+    - CLI or script-based ingestion pipeline
+    - Re-runnable workflow
+    - Clear handoff artifacts for Phase 2
+
+====================
+CONSTRAINTS
+====================
+
+- This phase MUST NOT implement retrieval or chat logic
+- This phase MUST NOT depend on frontend integration
+- All outputs must be forward-compatible with later phases
+- No manual steps allowed once configured
+
+====================
+OUTPUT FORMAT
+====================
+
+- Produce ONLY the Phase 1 specification
+- Use clear, numbered sections
+- Use enforceable, testable language
+- No explanations, commentary, or tutorials
+- This spec must be suitable for direct execution by Claude Code
+
+Generate the Phase 1 specification now.

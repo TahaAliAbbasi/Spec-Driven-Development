@@ -1,62 +1,116 @@
 <!-- Sync Impact Report -->
-<!-- Version change: 0.0.0 → 1.0.0 -->
-<!-- Modified principles: All new -->
-<!-- Added sections: Folder Structure & Documentation Standards, Contribution & Quality Workflow -->
-<!-- Removed sections: None -->
-<!-- Templates requiring updates: .specify/templates/plan-template.md ⚠ pending, .specify/templates/spec-template.md ⚠ pending, .specify/templates/tasks-template.md ⚠ pending, .specify/templates/commands/*.md ⚠ pending -->
+<!-- Version change: 1.0.0 → 2.0.0 -->
+<!-- Modified principles: Complete rewrite to address AI/Spec-Driven Book requirements -->
+<!-- Added sections: RAG Rules, Authentication & UX Rules, Technical Enforcement, Extensibility & Evaluation -->
+<!-- Removed sections: Previous content structure -->
+<!-- Templates requiring updates: .specify/templates/plan-template.md ✅ updated, .specify/templates/spec-template.md ✅ updated, .specify/templates/tasks-template.md ✅ updated, .specify/templates/commands/*.md ✅ updated -->
 <!-- Follow-up TODOs: None -->
-# Physical AI & Humanoid Robotics Book Project Constitution
+# Global Constitution for AI-Driven Book Project with RAG Chatbot
 
 ## Core Principles
 
-### I. Spec-Driven Development
-All features and content MUST originate from a clear, concise, and machine-readable specification.
+### I. Spec-Driven Development Enforcement
+All features, content, and functionality MUST originate from clear, machine-readable specifications using Spec-Kit Plus. No development proceeds without a validated spec.
 
-### II. Modular Content
-Each book section, chapter, or major topic MUST be treated as a modular unit, independently developable, testable, and documentable.
+### II. Zero Hallucination Policy
+The RAG chatbot MUST ONLY respond based on provided book content or selected text. Under NO circumstances may the system fabricate, infer, or hallucinate information beyond the provided context.
 
-### III. Docusaurus Best Practices
-Adhere to Docusaurus configuration guidelines, theme customization, and content structuring for optimal performance and maintainability.
+### III. Deterministic, Explainable AI Behavior
+All AI-generated content and responses MUST be reproducible and explainable. The system MUST provide clear attribution to source material when answering questions.
 
-### IV. AI-Assisted Content Generation
-AI agents MUST be instructed with clear prompts, provide content that adheres to factual accuracy and style guides, and facilitate iterative refinement.
+## Agent Governance
 
-### V. Clear Naming Conventions
-Standardize file, folder, variable, and component naming to enhance readability, searchability, and maintainability.
+### IV. Primary Agent Definition
+Claude Code serves as the primary AI author and engineer for all content creation, development, and maintenance tasks.
 
-### VI. Versioned Releases
-Content updates and major revisions MUST follow semantic versioning, with clear release notes for each published version.
+### V. Subagent Creation Rules
+Subagents MAY be created only when they serve reusable intelligence functions. Each subagent MUST have a clear, documented purpose and lifecycle management plan.
 
-## Folder Structure & Documentation Standards
-- **Folder Structure:**
-    - `docs/`: Markdown files for book content. Structured hierarchically by chapters/sections.
-    - `src/pages/`: Additional standalone pages (e.g., About, Contributors).
-    - `static/`: Static assets (images, PDFs).
-    - `.github/`: GitHub-specific configs (workflows, issue templates).
-    - `.specify/`: SpecKit Plus templates and scripts.
-    - `history/`: Prompt History Records (PHRs) and Architectural Decision Records (ADRs).
-- **Documentation Standards:**
-    - All content MUST be written in GitHub-flavored Markdown.
-    - Code examples MUST be accurate, tested, and properly formatted with language highlighting.
-    - Diagrams and illustrations SHOULD be provided for complex concepts.
-    - External references MUST be cited with appropriate links.
+### VI. Separation of Concerns
+- Content agents: Responsible for book content creation and maintenance
+- RAG agents: Handle vector storage, retrieval, and context processing
+- Frontend agents: Manage user interface and experience
+- Backend agents: Handle API, authentication, and data management
 
-## Contribution & Quality Workflow
-- **Contribution Workflow:**
-    - All changes MUST be proposed via Pull Requests (PRs).
-    - PRs require at least one approving review before merging.
-    - Feature branches MUST be used for all development.
-    - Commit messages MUST follow Conventional Commits specification.
-- **Quality & Testing Guidelines:**
-    - Content accuracy MUST be verified (human review + automated checks where possible).
-    - Code examples MUST pass automated tests (if applicable).
-    - Docusaurus build MUST pass without errors or warnings.
-    - Accessibility (a11y) guidelines SHOULD be considered for all new UI components/content.
+## Content Rules
+
+### VII. Writing Standards
+All book content MUST be beginner-friendly while maintaining technical accuracy. Content MUST follow progressive complexity patterns.
+
+### VIII. Consistency Requirements
+Chapters MUST maintain consistent terminology, style, and formatting across the entire book. Cross-references MUST be maintained and accurate.
+
+## RAG Rules
+
+### IX. Chunking Strategy
+Content MUST be chunked semantically, preserving meaning within each segment. Chunks SHOULD not exceed 1000 tokens and MUST not break logical content units.
+
+### X. Embedding Rules
+All content embeddings MUST use the same model and methodology for consistency. Metadata MUST be preserved during embedding processes.
+
+### XI. Context Filtering
+The RAG system MUST filter retrieved context to ensure relevance to user queries. Context MUST be validated before generating responses.
+
+### XII. Selected-Text-Only Answering
+When users select specific text, the system MUST ONLY respond based on that selected text and related context from the book.
+
+### XIII. Fallback Responses
+When no relevant context exists for a query, the system MUST clearly indicate that it cannot answer based on the provided material rather than attempting to answer.
+
+## Authentication & UX Rules
+
+### XIV. Authentication Boundaries
+Authentication MUST be implemented using Better Auth. All personalized features MUST be accessible only to authenticated users.
+
+### XV. Personalization Behavior
+Personalization MUST adapt chapter content based on user's software/hardware background. Personalization MUST be triggered by explicit user action (button press) and NOT applied silently.
+
+### XVI. Translation Behavior
+Urdu translation MUST preserve technical accuracy and meaning. Translation MUST be triggered by explicit user action and be available only to authenticated users.
+
+### XVII. Button-Triggered Transformations
+All content modifications (personalization, translation) MUST be initiated by user interaction with specific buttons at the start of each chapter.
+
+### XVIII. No Silent Content Mutation
+The system MUST NOT automatically modify content without explicit user consent. All transformations MUST be reversible and transparent.
+
+## Technical Enforcement
+
+### XIX. Mandatory Tech Stack Usage
+- Frontend: Docusaurus
+- Backend: FastAPI
+- Database: Neon Serverless Postgres
+- Vector DB: Qdrant Cloud Free Tier
+- Authentication: Better Auth
+- AI Integration: OpenAI Agents / ChatKit SDKs
+
+### XX. Forbidden Violations
+- Direct database manipulation without proper API endpoints
+- Bypassing RAG system for chatbot responses
+- Storing user data without proper consent and encryption
+- Using external APIs without proper integration
+
+### XXI. Deployment Guarantees
+The system MUST deploy to GitHub Pages with all functionality intact. The RAG chatbot MUST be embedded within the published book and fully operational.
+
+## Extensibility & Evaluation
+
+### XXII. New Feature Addition Process
+New features MUST align with constitutional principles. Features MUST be spec'd using Spec-Kit Plus before implementation begins.
+
+### XXIII. Bonus Point Feature Alignment
+- Reusable intelligence via subagents and skills: +50 points
+- Better Auth signup/signin: +50 points
+- Content personalization per chapter: +50 points
+- Urdu translation per chapter: +50 points
+
+### XXIV. Future Phase Compliance
+All future project phases MUST comply with this constitution. Deviations REQUIRE formal constitutional amendments.
 
 ## Governance
 - **Amendment Procedure:** Amendments to this constitution MUST be proposed via PRs, undergo review, and require unanimous approval from core contributors.
-- **Versioning Policy:** This constitution itself follows semantic versioning.
+- **Versioning Policy:** This constitution follows semantic versioning. Major changes require version increment.
 - **Compliance Review:** Regular reviews (at least quarterly) MUST be conducted to ensure ongoing adherence and relevance of these principles.
 - **Supersedes:** This constitution supersedes all other informal practices or guidelines.
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-04
+**Version**: 2.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-13
