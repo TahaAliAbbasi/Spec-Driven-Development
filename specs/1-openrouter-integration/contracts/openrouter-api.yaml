@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: OpenRouter Integration API
+  description: API specification for OpenRouter integration in Agent-Based Response Generation
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+paths:
+  /api/answer:
+    post:
+      summary: Generate a response based on user query and context
+      description: Process a user query with provided context to generate a constitutionally-compliant response with proper citations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentInput'
+      responses:
+        '200':
+          description: Successful response generation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentOutput'
+        '422':
+          description: Constitutional violation or insufficient context
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during agent processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/health/answer:
+    get:
+      summary: Health check for answer generation service
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  service:
+                    type: string
+                    example: "answer-generation"
+components:
+  schemas:
+    AgentInput:
+      type: object
+      required:
+        - query
+        - context_bundle
+        - mode
+      properties:
+        query:
+          type: string
+          description: User's question or query
+          example: "What is Retrieval Augmented Generation?"
+        context_bundle:
+          type: object
+          description: Bundle of context information
+          properties:
+            chunks:
+              type: array
+              items:
+                $ref: '#/components/schemas/Chunk'
+            status:
+              type: string
+              description: Status of the context bundle
+              example: "success"
+        mode:
+          type: string
+          description: Operation mode (selected_text_only, full_context, etc.)
+          enum: [selected_text_only, full_context]
+          example: "full_context"
+    AgentOutput:
+      type: object
+      required:
+        - answer
+        - citations
+        - used_chunks
+        - status
+      properties:
+        answer:
+          type: string
+          description: Generated answer based on context
+          example: "Retrieval Augmented Generation (RAG) is a technique that combines information retrieval with generative models..."
+        citations:
+          type: array
+          description: List of citations for the generated response
+          items:
+            $ref: '#/components/schemas/ChunkReference'
+        used_chunks:
+          type: array
+          description: IDs of chunks used in generating the response
+          items:
+            type: string
+          example: ["chunk-001", "chunk-002"]
+        status:
+          type: string
+          description: Status of the response generation
+          enum: [ANSWERED, INSUFFICIENT_CONTEXT, REFUSED]
+          example: "ANSWERED"
+        warnings:
+          type: array
+          description: Optional warnings during processing
+          items:
+            type: string
+    Chunk:
+      type: object
+      required:
+        - chunk_id
+        - content
+      properties:
+        chunk_id:
+          type: string
+          description: Unique identifier for the chunk
+          example: "chunk-001"
+        content:
+          type: string
+          description: Content of the text chunk
+          example: "Retrieval Augmented Generation (RAG) is a technique in AI that combines information retrieval with generative models..."
+        metadata:
+          $ref: '#/components/schemas/ChunkMetadata'
+    ChunkReference:
+      type: object
+      required:
+        - chunk_id
+        - source_url
+      properties:
+        chunk_id:
+          type: string
+          description: Unique identifier for the referenced chunk
+          example: "chunk-001"
+        source_url:
+          type: string
+          description: URL of the source document
+          example: "https://example.com/document.pdf"
+    ChunkMetadata:
+      type: object
+      properties:
+        source_url:
+          type: string
+          description: URL of the source document
+          example: "https://example.com/document.pdf"
+        page_number:
+          type: integer
+          description: Page number in the source document
+          example: 15
+        section_title:
+          type: string
+          description: Title of the section containing the chunk
+          example: "Introduction to RAG"
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: "CONSTITUTIONAL_VIOLATION"
+        message:
+          type: string
+          description: Detailed error message
+          example: "Context bundle format is invalid"

@@ -1,0 +1,136 @@
+You are an expert Retrieval-Augmented Generation (RAG) architect and Spec-Driven Development authority.
+
+Generate a COMPLETE, enforceable SPECIFICATION for **Phase 2: Retrieval & Context Assembly** of an integrated RAG chatbot system.
+
+This specification MUST strictly follow the project’s Global Constitution and MUST build directly on the outputs of Phase 1 (Knowledge Ingestion & Vectorization).
+
+====================
+PROJECT CONTEXT
+====================
+
+The project is a unified AI-driven book published using Docusaurus and deployed on Vercel.
+
+Phase 1 has already produced:
+- A populated vector database
+- Deterministic content chunks
+- Rich metadata (source_url, chapter, section, chunk_id, language, version)
+
+Phase 2 is responsible ONLY for retrieving and assembling relevant context.
+No generation, no agents, and no frontend integration are allowed in this phase.
+
+====================
+PHASE 2 OBJECTIVES
+====================
+
+Phase 2 must:
+
+1. Accept a user query or selected text as input
+2. Convert input into a vector query
+3. Retrieve the most relevant content chunks from the vector database
+4. Apply metadata-aware filtering and ranking
+5. Assemble a clean, ordered context bundle
+6. Return retrieval results in a format usable by Phase 3 agents
+
+====================
+OUT OF SCOPE
+====================
+
+Phase 2 MUST NOT:
+
+- Generate natural language answers
+- Call any LLM for response generation
+- Implement OpenAI Agents
+- Implement authentication or personalization logic
+- Integrate with frontend UI
+
+====================
+SPECIFICATION REQUIREMENTS
+====================
+
+The specification MUST include:
+
+1. **Scope & Responsibilities**
+   - Clear definition of Phase-2 duties
+   - Explicit non-responsibilities
+
+2. **Inputs**
+   - User query (free-form text)
+   - User-selected text (subset of book content)
+   - Optional retrieval parameters (top_k, filters)
+
+3. **Retrieval Modes**
+   - Standard query-based retrieval
+   - Selected-text-only retrieval
+   - Fallback behavior when selected text is empty or invalid
+
+4. **Vector Search Strategy**
+   - Similarity search behavior
+   - Distance / relevance interpretation
+   - Top-K selection strategy
+
+5. **Metadata Filtering**
+   - Chapter-aware retrieval
+   - Section-aware retrieval
+   - Language and version constraints
+   - Deduplication rules
+
+6. **Ranking & Post-Processing**
+   - Secondary ranking heuristics
+   - Handling near-duplicate chunks
+   - Stable, deterministic ordering
+
+7. **Context Assembly Rules**
+   - Maximum context size constraints
+   - Ordering rules (by relevance, then structure)
+   - Chunk boundary preservation
+   - No hallucinated or synthetic content
+
+8. **Selected-Text Enforcement**
+   - Hard guarantees that retrieval is restricted
+   - Zero leakage outside selected text scope
+   - Explicit rejection behavior when scope is violated
+
+9. **Error & Edge Case Handling**
+   - Empty database
+   - No relevant matches
+   - Partial matches
+   - Conflicting metadata
+
+10. **Observability**
+    - Retrieval logs
+    - Metrics (query count, hit rate, latency)
+    - Debug traceability
+
+11. **Security & Compliance**
+    - No exposure of raw embeddings
+    - No persistence of user queries
+    - Compliance with zero-hallucination policy
+
+12. **Deliverables**
+    - Retrieval module or service
+    - Deterministic output schema
+    - Clear handoff artifacts for Phase 3
+
+====================
+SUCCESS CRITERIA
+====================
+
+The specification MUST define success such that:
+
+- Retrieval returns ONLY content present in the vector database
+- Selected-text-only mode never leaks external context
+- Results are deterministic across repeated identical queries
+- Retrieved context is sufficient for answer generation in Phase 3
+- Phase 2 can be tested independently without any LLM calls
+
+====================
+OUTPUT FORMAT
+====================
+
+- Output ONLY the Phase 2 specification
+- Use clear, numbered sections
+- Use enforceable, testable language
+- No explanations, tutorials, or commentary
+- The spec must be suitable for direct execution by Claude Code
+
+Generate the Phase 2 specification now.

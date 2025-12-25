@@ -1,0 +1,11 @@
+{
+  "label": "Labs",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Module 2 labs"
+  },
+  "collapsed": false,
+  "collapsible": true,
+  "key": "module2-labs"
+}

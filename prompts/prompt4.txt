@@ -1,0 +1,141 @@
+You are a senior AI systems architect specializing in agent-based RAG systems, OpenAI Agents SDK, and Spec-Driven Development (SDD).
+
+TASK:
+Design and specify Phase 3: “Agent-Based Response Generation & Orchestration” for a constitutionally governed RAG system.
+
+CONTEXT:
+- Phase 1 (Ingestion, Chunking, Embeddings, Qdrant Storage) is complete.
+- Phase 2 (Retrieval, Filtering, Context Assembly) is finalized and constitution-compliant.
+- Phase 3 must consume Phase-2 ContextBundles exactly as produced.
+- The Global Constitution v2.0.0 is authoritative and must not be violated.
+
+SCOPE BOUNDARIES (NON-NEGOTIABLE):
+- Phase 3 is responsible ONLY for:
+  - Agent orchestration
+  - Response generation using retrieved context
+  - Source attribution
+- Phase 3 MUST NOT:
+  - Perform retrieval logic
+  - Modify retrieved content
+  - Invent or synthesize facts outside retrieved context
+  - Handle frontend integration (Phase 4 responsibility)
+
+ARCHITECTURE OVERVIEW:
+- Backend service built with FastAPI
+- OpenAI Agents SDK used for agent orchestration
+- Single primary RAG agent with explicit tool boundaries
+- Retrieval provided exclusively via Phase-2 API/service
+
+OBJECTIVES:
+Define a deterministic, auditable, zero-hallucination RAG agent that:
+- Generates answers strictly grounded in retrieved context
+- Respects selected-text-only constraints
+- Provides traceable citations
+- Produces stable outputs for identical inputs
+
+CONSTITUTIONAL REQUIREMENTS:
+The design MUST explicitly enforce:
+
+1. **Zero Hallucination Policy**
+   - All generated tokens must be grounded in retrieved context
+   - If context is insufficient → return an explicit insufficiency response
+   - No fallback to general knowledge or pretrained memory
+
+2. **Context-Bound Generation**
+   - The agent receives:
+     - User query
+     - ContextBundle (from Phase 2)
+   - The agent may NOT request additional retrieval
+   - Context trimming is prohibited at this stage
+
+3. **Deterministic Agent Behavior**
+   - Fixed system prompt
+   - Fixed tool invocation order
+   - No autonomous planning loops
+   - Temperature and randomness explicitly constrained
+
+4. **Selected-Text-Only Enforcement**
+   - If ContextBundle.status ≠ "success", agent must refuse to answer
+   - Agent must acknowledge scope restrictions in output metadata
+
+5. **Mandatory Source Attribution**
+   - Every factual statement must reference:
+     - chunk_id
+     - source_url
+   - Output format must structurally bind claims to sources
+
+AGENT DESIGN:
+
+### Primary Agent: `RAGAnswerAgent`
+- Role: Context-grounded response generator
+- Inputs:
+  - user_query: str
+  - context_bundle: ContextBundle
+- Outputs:
+  - answer_text: str
+  - citations: List[ChunkReference]
+  - status: "answered" | "insufficient_context" | "refused"
+
+### Tools:
+- `answer_from_context(context_bundle, query)`
+  - Pure generation tool
+  - No side effects
+- No retrieval or mutation tools allowed
+
+DATA CONTRACTS:
+
+**AgentInput**
+- query: str
+- context_bundle: ContextBundle
+- mode: "global" | "selected_text_only"
+
+**AgentOutput**
+- answer: str
+- citations:
+  - chunk_id
+  - source_url
+- used_chunks: List[chunk_id]
+- status
+- warnings (optional)
+
+FASTAPI INTERFACE:
+
+POST `/api/answer`
+- Input: AgentInput
+- Output: AgentOutput
+- Errors:
+  - 400: invalid input
+  - 422: constitutional violation
+  - 500: agent failure
+
+QUALITY CONTROLS:
+- Hard token limits enforced
+- Deterministic ordering of cited chunks
+- Response refusal on:
+  - empty context
+  - insufficient evidence
+  - scope mismatch
+
+OUTPUT REQUIREMENTS:
+- Produce a complete Phase-3 specification document
+- Preserve sectioned structure (Context, Scope, Architecture, Agent Design, API, QA)
+- Use precise, implementation-ready language
+- No code generation
+
+FORBIDDEN:
+- No frontend logic
+- No UI concerns
+- No speculative reasoning
+- No memory persistence
+- No multi-agent debate or autonomy
+
+SUCCESS CRITERIA:
+A reviewer must be able to:
+- Implement Phase 3 without guessing
+- Verify constitutional compliance
+- Clearly see separation from Phases 2 and 4
+- Confirm zero-hallucination guarantees
+
+Do NOT generate code.
+Do NOT re-design earlier phases.
+Do NOT introduce new models or vector databases.

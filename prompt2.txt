@@ -1,0 +1,73 @@
+You are an expert RAG systems engineer working under a strict Spec-Driven Development process.
+
+Your task is to UPDATE the existing Phase-1 Knowledge Ingestion & Vectorization implementation to fully comply with the Phase-1 specification and the Global Constitution.
+
+====================
+NON-NEGOTIABLE RULES
+====================
+
+- Do NOT redesign the pipeline
+- Do NOT add Phase-2 or Phase-3 functionality
+- Do NOT remove existing functionality unless explicitly required
+- Make MINIMAL, targeted changes only
+- Preserve current structure, logging, and flow
+- Maintain backward compatibility of stored data where possible
+
+====================
+REQUIRED CORRECTIONS
+====================
+
+1. **Deterministic, Context-Aware Chunk IDs**
+   - Chunk IDs MUST be deterministic AND unique across:
+     - source_url
+     - chapter
+     - section
+     - chunk content
+     - version
+   - Replace content-only hashing with composite identity hashing
+   - Ensure idempotent re-runs never collide across chapters or URLs
+
+2. **Correct Semantic Overlap Strategy**
+   - Fix overlap logic so overlap actually reuses previous content
+   - Overlap MUST be deterministic and sentence-based
+   - Do NOT reset the chunk incorrectly
+   - Preserve semantic continuity across chunks
+
+3. **Enforce Retry & Backoff for Embedding Generation**
+   - Apply the existing retry mechanism to embedding API calls
+   - Handle rate limits and transient failures gracefully
+   - Retries MUST be logged and bounded
+
+4. **Preserve Semantic HTML Structure**
+   - Improve HTML extraction to preserve:
+     - headings (h1–h3)
+     - paragraphs
+     - code blocks
+   - Continue removing boilerplate elements
+   - Do NOT flatten structure into a single paragraph
+
+5. **Externalize Collection Configuration**
+   - Remove hardcoded collection name
+   - Read collection name and version from environment variables
+   - Provide safe defaults if variables are missing
+
+====================
+FORBIDDEN ACTIONS
+====================
+
+- Do NOT add retrieval logic
+- Do NOT add OpenAI Agents or FastAPI endpoints
+- Do NOT add frontend integration
+- Do NOT change embedding model or vector DB
+- Do NOT rename core pipeline functions unnecessarily
+
+====================
+DELIVERABLE
+====================
+
+- Update the existing implementation in place
+- Code MUST remain runnable after changes
+- All changes must be clearly traceable and justified in code comments
+- No extra documentation or explanations required
+
+Proceed with the implementation now.

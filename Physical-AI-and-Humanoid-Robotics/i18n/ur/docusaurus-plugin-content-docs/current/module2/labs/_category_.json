@@ -1,0 +1,11 @@
+{
+  "label": "مطاعم",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "ماڈیول 2 مطاعم"
+  },
+  "collapsed": false,
+  "collapsible": true,
+  "key": "module2-labs"
+}

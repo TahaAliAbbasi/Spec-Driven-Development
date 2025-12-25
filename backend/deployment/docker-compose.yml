@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  rag-chatbot-backend:
+    build:
+      context: ../
+      dockerfile: deployment/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - QDRANT_URL=${QDRANT_URL}
+      - QDRANT_COLLECTION_NAME=${QDRANT_COLLECTION_NAME:-physical_ai_humanoid_docs_v3}
+      - FRONTEND_API_KEY=${FRONTEND_API_KEY}
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - MAX_CONTEXT_TOKENS=4000
+      - RATE_LIMIT_REQUESTS=100
+      - RATE_LIMIT_WINDOW=60
+      - SESSION_TIMEOUT_MINUTES=30
+      - DEFAULT_CONFIDENCE_THRESHOLD=0.7
+      - OPENAI_MODEL=gpt-4-turbo
+      - COHERE_MODEL=embed-multilingual-v3.0
+    volumes:
+      - ./logs:/app/logs  # Mount logs directory if logging to files
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Reverse proxy with nginx for production
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl  # For SSL certificates
+    depends_on:
+      - rag-chatbot-backend
+    restart: unless-stopped
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+
+volumes:
+  logs:

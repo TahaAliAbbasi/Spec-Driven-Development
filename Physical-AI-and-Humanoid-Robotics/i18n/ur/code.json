@@ -1,0 +1,359 @@
+{
+  "theme.ErrorPageContent.title": {
+    "message": "یہ صفحہ کریش کر گیا ہے۔",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "واپس اوپر جائیں",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.blog.archive.title": {
+    "message": "آرکائیو",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "آرکائیو",
+    "description": "The page & hero description of the blog archive page"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "بلاگ لسٹ پیج نیویگیشن",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "نئی تحریریں",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "پرانی تحریریں",
+    "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "بلاگ پوسٹ پیج نیویگیشن",
+    "description": "The ARIA label for the blog posts pagination"
+  },
+  "theme.blog.post.paginator.newerPost": {
+    "message": "نئی پوسٹ",
+    "description": "The blog post button label to navigate to the newer/previous post"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "پرانی پوسٹ",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "تمام ٹیگز دیکھیں",
+    "description": "The label of the link targeting the tag list page"
+  },
+  "theme.colorToggle.ariaLabel.mode.system": {
+    "message": "سسٹم موڈ",
+    "description": "The name for the system color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "لائٹ موڈ",
+    "description": "The name for the light color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "ڈارک موڈ",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "ڈارک اور لائٹ موڈ کے درمیان تبدیل کریں (فی الحال {mode})",
+    "description": "The ARIA label for the color mode toggle"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 آئٹم|{count} آئٹمز",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "بریڈ کرمبز",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "ڈاکس پیجز",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "پچھلا",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.paginator.next": {
+    "message": "اگلا",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "ایک دستاویز ٹیگ کی گئی|{count} دستاویزات ٹیگ کی گئیں",
+    "description": "Pluralized label for \"{count} docs tagged\"."
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "\"{tagName}\" کے ساتھ {nDocsTagged}",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "ورژن: {versionLabel}"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "یہ {siteTitle} {versionLabel} ورژن کے لیے غیر جاری شدہ دستاویزات ہیں۔",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "یہ {siteTitle} {versionLabel} کے لیے دستاویزات ہیں، جن کی اب فعال طور پر دیکھ بھال نہیں کی جا رہی۔",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "تازہ ترین دستاویزات کے لیے، {latestVersionLink} ({versionLabel}) دیکھیں۔",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "تازہ ترین ورژن",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.common.editThisPage": {
+    "message": "اس صفحے میں ترمیم کریں",
+    "description": "The link label to edit the current page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "{heading} کا براہ راست لنک",
+    "description": "Title for link to heading"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " بتاریخ {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " از {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "آخری بار اپ ڈیٹ کیا گیا {atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "ورژنز",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.NotFound.title": {
+    "message": "صفحہ نہیں ملا",
+    "description": "The title of the 404 page"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "ٹیگز:",
+    "description": "The label alongside a tag list"
+  },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "بند کریں",
+    "description": "The ARIA label for close button of announcement bar"
+  },
+  "theme.admonition.caution": {
+    "message": "احتیاط",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.admonition.danger": {
+    "message": "خطرہ",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "معلومات",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.note": {
+    "message": "نوٹ",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "مشورہ",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.warning": {
+    "message": "انتباہ",
+    "description": "The default label used for the Warning admonition (:::warning)"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "بلاگ کی حالیہ تحریروں کی نیویگیشن",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "سائڈبار کیٹیگری '{label}' کو کھولیں",
+    "description": "The ARIA label to expand the sidebar category"
+  },
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "سائڈبار کیٹیگری '{label}' کو بند کریں",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.IconExternalLink.ariaLabel": {
+    "message": "(نئی ٹیب میں کھلتا ہے)",
+    "description": "The ARIA label for the external link icon"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "مین",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.NotFound.p1": {
+    "message": "ہم وہ تلاش نہیں کر سکے جو آپ ڈھونڈ رہے تھے۔",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "براہ کرم اس سائٹ کے مالک سے رابطہ کریں جس نے آپ کو اصل یو آر ایل کا لنک دیا تھا اور انہیں بتائیں کہ ان کا لنک کام نہیں کر رہا۔",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "زبانیں",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "اس صفحے پر",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.blog.post.readMore": {
+    "message": "مزید پڑھیں",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "{title} کے بارے میں مزید پڑھیں",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "ایک منٹ کا مطالعہ|{readingTime} منٹ کا مطالعہ",
+    "description": "Pluralized label for \"{readingTime} min read\"."
+  },
+  "theme.CodeBlock.copy": {
+    "message": "کاپی کریں",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "کاپی ہو گیا",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "کوڈ کلپ بورڈ پر کاپی کریں",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "ورڈ ریپ کو تبدیل کریں",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "ہوم پیج",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "سائڈبار کو بند کریں",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "سائڈبار کو بند کریں",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "ڈاکس سائڈبار",
+    "description": "The ARIA label for the sidebar navigation"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "نیویگیشن بار بند کریں",
+    "description": "The ARIA label for close button of mobile sidebar"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← مین مینو پر واپس جائیں",
+    "description": "The label of the back button to return to main menu"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "نیویگیشن بار کو تبدیل کریں",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
+    "message": "ڈراپ ڈاؤن کو کھولیں",
+    "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
+    "message": "ڈراپ ڈاؤن کو بند کریں",
+    "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "سائڈبار کو کھولیں",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "سائڈبار کو کھولیں",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.blog.post.plurals": {
+    "message": "ایک پوسٹ|{count} پوسٹس",
+    "description": "Pluralized label for \"{count} posts\"."
+  },
+  "theme.blog.tagTitle": {
+    "message": "\"{tagName}\" کے ساتھ {nPosts} ٹیگ کیے گئے",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "مصنفین",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "تمام مصنفین دیکھیں",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "اس مصنف نے ابھی تک کوئی پوسٹ نہیں لکھی۔",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "غیر فہرست شدہ صفحہ",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "یہ صفحہ غیر فہرست شدہ ہے۔ سرچ انجن اسے انڈیکس نہیں کریں گے، اور صرف وہی صارفین اسے دیکھ سکتے ہیں جن کے پاس براہ راست لنک ہو۔",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "ڈرافٹ صفحہ",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "یہ صفحہ ایک ڈرافٹ ہے۔ یہ صرف ڈیولپمنٹ میں نظر آئے گا اور پروڈکشن بلڈ سے نکال دیا جائے گا۔",
+    "description": "The draft content banner message"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "دوبارہ کوشش کریں",
+    "description": "The label of the button to try again"
+  },
+  "theme.common.skipToMainContent": {
+    "message": "مرکزی مواد پر جائیں",
+    "description": "The skip to content label used for accessibility"
+  },
+  "theme.tags.tagsPageTitle": {
+    "message": "ٹیگز",
+    "description": "The title of the tag list page"
+  },
+  "homepage.title": {
+    "message": "فزیکل اے آئی اور ہیومنائیڈ روبوٹکس"
+  },
+  "homepage.subtitle": {
+    "message": "فزیکل اے آئی، ہیومنائیڈ روبوٹکس، اور جدید سیمولیشن ٹولز کے لیے ایک جامع گائیڈ۔ یہ کتاب آپ کو ROS 2 کے ذریعے روبوٹ کنٹرول سے لے کر فوٹو ریئلسٹک ڈیجیٹل ٹوئنز اور اے آئی سے چلنے والے ہیومنائیڈ رویوں تک لے جاتی ہے۔ یہ ان سیکھنے والوں کے لیے ڈیزائن کی گئی ہے جو ذہین روبوٹس کو حقیقت میں لانا چاہتے ہیں۔"
+  },
+  "homepage.startReading button": {
+    "message": "پڑھنا شروع کریں"
+  },
+  "homepage.hero_title": {
+    "message": "اس کتاب میں کیا ہے؟"
+  },
+  "homepage.hero_subtitle": {
+    "message": "ماڈیولز :-"
+  },
+  "homepage.hero_subtitle1": {
+    "message": "یہ کتاب ہیومنائیڈ روبوٹکس کے ذریعے اے آئی کو حقیقی فزیکل دنیا میں لانے کا مکمل تعارف ہے۔ اے آئی کو صرف اسکرینوں اور سافٹ ویئر تک محدود رکھنے کے بجائے، یہ کتاب آپ کو سکھاتی ہے کہ ایسے روبوٹس کیسے بنائے جائیں جو اپنے ماحول کو محسوس کر سکیں، صورتحال کو سمجھ سکیں، اور ذہانت سے عمل کر سکیں۔"
+  },
+  "homepage.hero_subtitle2": {
+    "message": "سفر کا آغاز ROS 2 سے ہوتا ہے، جو روبوٹس کا مرکزی آپریٹنگ سسٹم ہے۔ آپ سمجھیں گے کہ روبوٹ کا ”اعصابی نظام“ کیسے کام کرتا ہے—یہ کیسے پیغامات بھیجتا ہے، موٹرز کو کنٹرول کرتا ہے، سینسرز پڑھتا ہے، اور احکامات پر عمل کرتا ہے۔ اس کے بعد یہ کتاب آپ کو سیمولیشن میں لے جاتی ہے جہاں Gazebo اور Unity کے ذریعے آپ اپنے روبوٹ کا ڈیجیٹل ٹوئن بنائیں گے۔"
+  },
+  "homepage.hero_subtitle3": {
+    "message": "اس کے بعد، کتاب NVIDIA Isaac کا جائزہ لیتی ہے، جو روبوٹس کو اے آئی کے ساتھ تربیت دینے کا ایک طاقتور پلیٹ فارم ہے۔ آپ سیکھیں گے کہ روبوٹس Isaac Sim اور Isaac ROS جیسے جدید ٹولز کا استعمال کرتے ہوئے ادراک، نیویگیشن، اور فیصلہ سازی کی صلاحیتیں کیسے پیدا کر سکتے ہیں۔"
+  },
+  "homepage.hero_subtitle4": {
+    "message": "آخر میں، کتاب دکھاتی ہے کہ قدرتی بات چیت کے لیے جدید اے آئی ماڈلز کو روبوٹس سے کیسے جوڑا جا سکتا ہے۔ آپ گفتگو کے لیے GPT اور آواز کے کنٹرول کے لیے Whisper جیسے سسٹمز کا استعمال سیکھیں گے۔ کتاب کے اختتام تک، آپ ایک مکمل ہیومنائیڈ روبوٹ بنائیں گے جو آپ کی آواز سن سکے گا، رکاوٹوں سے بچ سکے گا، اور خود سے کام انجام دے سکے گا۔"
+  },
+  "homepage.hero_subtitle5": {
+    "message": "ماڈیولز :-"
+  }
+}

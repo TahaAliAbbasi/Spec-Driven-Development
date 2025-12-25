@@ -1,0 +1,11 @@
+{
+  "label": "Code Examples",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Module 2 code examples"
+  },
+  "collapsed": false,
+  "collapsible": true,
+  "key": "module2-code-examples"
+}

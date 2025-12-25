@@ -1,0 +1,162 @@
+openapi: 3.0.0
+info:
+  title: Phase 3 - Agent-Based Response Generation API
+  description: API for generating responses using RAG agents with constitutional compliance
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+paths:
+  /api/answer:
+    post:
+      summary: Generate a response based on user query and context
+      description: Processes a user query with provided context bundle to generate a constitutionally-compliant response with citations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentInput'
+      responses:
+        '200':
+          description: Successfully generated response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentOutput'
+        '400':
+          description: Invalid input format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Constitutional violation (insufficient context, scope mismatch, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during agent processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/health/answer:
+    get:
+      summary: Health check for the answer generation service
+      description: Returns the health status of the answer generation service
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  service:
+                    type: string
+                    example: "answer-generation"
+components:
+  schemas:
+    AgentInput:
+      type: object
+      required:
+        - query
+        - context_bundle
+        - mode
+      properties:
+        query:
+          type: string
+          description: The user's question or query
+          example: "What are the key principles of RAG systems?"
+        context_bundle:
+          $ref: '#/components/schemas/ContextBundle'
+        mode:
+          type: string
+          description: The operation mode
+          enum: [global, selected_text_only]
+          example: "global"
+    ContextBundle:
+      type: object
+      description: Context bundle from Phase 2 retrieval (external reference)
+      properties:
+        # This would be fully defined based on Phase 2 contract
+        chunks:
+          type: array
+          items:
+            type: object
+            properties:
+              chunk_id:
+                type: string
+              content:
+                type: string
+              metadata:
+                type: object
+        status:
+          type: string
+          example: "success"
+    AgentOutput:
+      type: object
+      required:
+        - answer
+        - citations
+        - used_chunks
+        - status
+      properties:
+        answer:
+          type: string
+          description: The generated answer text
+          example: "RAG systems combine retrieval and generation to provide contextually relevant responses..."
+        citations:
+          type: array
+          description: List of source citations for the answer
+          items:
+            $ref: '#/components/schemas/ChunkReference'
+        used_chunks:
+          type: array
+          description: List of chunk IDs used in the response
+          items:
+            type: string
+            example: "chunk_123"
+        status:
+          type: string
+          description: Status of the response generation
+          enum: [answered, insufficient_context, refused]
+          example: "answered"
+        warnings:
+          type: array
+          description: Optional warnings about the response
+          items:
+            type: string
+    ChunkReference:
+      type: object
+      required:
+        - chunk_id
+        - source_url
+      properties:
+        chunk_id:
+          type: string
+          description: Unique identifier of the referenced chunk
+          example: "chunk_123"
+        source_url:
+          type: string
+          description: URL or identifier of the source document
+          example: "https://example.com/document.pdf"
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: "INVALID_INPUT"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "The provided input format is invalid"

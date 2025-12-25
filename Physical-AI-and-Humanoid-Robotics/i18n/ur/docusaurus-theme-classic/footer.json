@@ -1,0 +1,58 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Contact": {
+    "message": "Contact",
+    "description": "The title of the footer links column with title=Contact in the footer"
+  },
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Introduction": {
+    "message": "Introduction",
+    "description": "The label of footer link with label=Introduction linking to /docs/intro"
+  },
+  "link.item.label.Module 1": {
+    "message": "Module 1",
+    "description": "The label of footer link with label=Module 1 linking to /docs/module1"
+  },
+  "link.item.label.Module 2": {
+    "message": "Module 2",
+    "description": "The label of footer link with label=Module 2 linking to /docs/module2"
+  },
+  "link.item.label.Module 3": {
+    "message": "Module 3",
+    "description": "The label of footer link with label=Module 3 linking to /docs/module3"
+  },
+  "link.item.label.Module 4": {
+    "message": "Module 4",
+    "description": "The label of footer link with label=Module 4 linking to /docs/module4"
+  },
+  "link.item.label.Capstone Project": {
+    "message": "Capstone Project",
+    "description": "The label of footer link with label=Capstone Project linking to /docs/module5"
+  },
+  "link.item.label.Taha Ali Abbasi GitHub": {
+    "message": "Taha Ali Abbasi GitHub",
+    "description": "The label of footer link with label=Taha Ali Abbasi GitHub linking to https://github.com/TahaAliAbbasi"
+  },
+  "link.item.label.Gmail": {
+    "message": "Gmail",
+    "description": "The label of footer link with label=Gmail linking to mailto:tahaaliabbasi333@gmail.com"
+  },
+  "link.item.label.Blog": {
+    "message": "Blog",
+    "description": "The label of footer link with label=Blog linking to /blog"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/TahaAliAbbasi/Spec-Driven-Development/tree/main/Physical-AI-and-Humanoid-Robotics"
+  },
+  "copyright": {
+    "message": "Copyright © 2025 Physical AI & Humanoid Robotics, Inc. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}

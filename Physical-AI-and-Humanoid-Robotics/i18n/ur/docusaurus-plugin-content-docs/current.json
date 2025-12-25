@@ -1,0 +1,42 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.ماڈیول 1: روبوٹک نروس سسٹم (ROS 2)": {
+    "message": "ماڈیول 1: روبوٹک نروس سسٹم (ROS 2)",
+    "description": "The label for category 'ماڈیول 1: روبوٹک نروس سسٹم (ROS 2)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ماڈیول 2: ڈیجیٹل ٹوئن (گیزبو اور یونٹی)": {
+    "message": "ماڈیول 2: ڈیجیٹل ٹوئن (گیزبو اور یونٹی)",
+    "description": "The label for category 'ماڈیول 2: ڈیجیٹل ٹوئن (گیزبو اور یونٹی)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.module2-labs": {
+    "message": "Labs",
+    "description": "The label for category 'Labs' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.module2-labs.link.generated-index.description": {
+    "message": "Module 2 labs",
+    "description": "The generated-index page description for category 'Labs' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ماڈیول 3: AI-روبوٹ کا دماغ (NVIDIA ایزیک™)": {
+    "message": "ماڈیول 3: AI-روبوٹ کا دماغ (NVIDIA ایزیک™)",
+    "description": "The label for category 'ماڈیول 3: AI-روبوٹ کا دماغ (NVIDIA ایزیک™)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.module3-labs": {
+    "message": "Labs",
+    "description": "The label for category 'Labs' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.module3-labs.link.generated-index.description": {
+    "message": "Module 3 labs",
+    "description": "The generated-index page description for category 'Labs' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ماڈیول 4: وژن-زبان-ایکشن (VLA) ماڈلز": {
+    "message": "ماڈیول 4: وژن-زبان-ایکشن (VLA) ماڈلز",
+    "description": "The label for category 'ماڈیول 4: وژن-زبان-ایکشن (VLA) ماڈلز' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.کیپسٹون پروجیکٹ: ہیومنوائڈ روبوٹ کنٹرول": {
+    "message": "کیپسٹون پروجیکٹ: ہیومنوائڈ روبوٹ کنٹرول",
+    "description": "The label for category 'کیپسٹون پروجیکٹ: ہیومنوائڈ روبوٹ کنٹرول' in sidebar 'tutorialSidebar'"
+  }
+}

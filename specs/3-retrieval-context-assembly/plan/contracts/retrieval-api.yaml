@@ -1,0 +1,111 @@
+# API Contract: Retrieval Service
+
+## Base URL
+`http://localhost:8000/api` (development)
+`https://[deployment-url]/api` (production)
+
+## Authentication
+None required for retrieval endpoints (public access)
+
+## Endpoints
+
+### POST /retrieve
+Retrieve relevant context based on query or selected text
+
+#### Request
+```json
+{
+  "query": "What are the key concepts in humanoid robotics?",
+  "selected_text": null,
+  "top_k": 5,
+  "chapter_filter": null,
+  "section_filter": null,
+  "language_constraint": "en",
+  "version_constraint": "1.0"
+}
+```
+
+**Request Parameters**:
+- `query`: User query text (string, optional, max 1000 chars)
+- `selected_text`: Text selected by user (string, optional, max 5000 chars) - Either query OR selected_text must be provided
+- `top_k`: Number of results to retrieve (integer, optional, default: 5, max: 20)
+- `chapter_filter`: Filter by specific chapter (string, optional)
+- `section_filter`: Filter by specific section (string, optional)
+- `language_constraint`: Filter by content language (string, optional, default: "en")
+- `version_constraint`: Filter by content version (string, optional, default: "1.0")
+
+#### Response
+```json
+{
+  "retrieved_chunks": [
+    {
+      "content": "Humanoid robots are robots with physical characteristics resembling humans...",
+      "source_url": "https://physical-ai-and-humanoid-robotics-lemon.vercel.app/introduction",
+      "chapter": "introduction",
+      "section": "overview",
+      "chunk_id": "123e4567-e89b-12d3-a456-426614174000",
+      "relevance_score": 0.85,
+      "token_count": 45
+    }
+  ],
+  "metadata": {
+    "query_type": "standard",
+    "processing_time_ms": 125,
+    "original_top_k": 5,
+    "returned_count": 3
+  },
+  "status": "success",
+  "total_tokens": 135
+}
+```
+
+**Response Fields**:
+- `retrieved_chunks`: Array of relevant content chunks
+- `metadata`: Additional information about the retrieval
+- `status`: Result status ("success", "partial", "no_matches", "error")
+- `total_tokens`: Total token count of all chunks
+
+**Status Codes**:
+- `200`: Success - context bundle returned
+- `400`: Bad Request - invalid parameters
+- `500`: Internal Server Error - retrieval failed
+
+### GET /health/retrieval
+Health check for retrieval service
+
+#### Response
+```json
+{
+  "status": "healthy",
+  "timestamp": "2025-12-13T15:30:00Z",
+  "service": "retrieval",
+  "dependencies": {
+    "qdrant": "connected",
+    "cohere": "available"
+  }
+}
+```
+
+**Status Codes**:
+- `200`: Healthy - service operational
+- `503`: Service Unavailable - one or more dependencies down
+
+## Error Responses
+
+All error responses follow this format:
+```json
+{
+  "error": "Error message describing the issue",
+  "code": "ERROR_CODE",
+  "details": {
+    "field": "value causing the error"
+  }
+}
+```
+
+### Common Error Codes
+- `INVALID_REQUEST`: Request parameters are invalid
+- `VECTORIZATION_FAILED`: Failed to convert text to vector
+- `DATABASE_ERROR`: Issue with vector database connection
+- `SCOPE_VIOLATION`: Selected-text mode exceeded scope boundaries
+- `RETRIEVAL_TIMEOUT`: Request timed out

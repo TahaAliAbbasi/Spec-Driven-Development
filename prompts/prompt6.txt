@@ -1,0 +1,71 @@
+# Phase 4 Specification Prompt for "Physical-AI-and-Humanoid-Robotics" Docusaurus Book
+
+You are tasked with implementing Phase 4: **User Interaction Layer & Agent Integration** for the book project located in the directory:
+
+Physical-AI-and-Humanoid-Robotics
+
+
+This book is built using **Docusaurus** (React-based), and the goal is to integrate the response generation system from Phase 3 directly into the existing Docusaurus project without creating a separate Next.js or React project.
+
+---
+
+## Requirements
+
+1. **Integration with Existing Book**
+   - All interactive features should reside within the `Physical-AI-and-Humanoid-Robotics` Docusaurus project.
+   - Avoid creating a new frontend project; leverage React components and pages within Docusaurus.
+
+2. **New Interactive Page**
+   - Create a page, e.g., `/query` or `/interactive`, for users to submit queries or selected text.
+   - The page should render:
+     - **QueryInput**: Form to input user queries or selected text.
+     - **ResponseViewer**: Display Phase 3 agent responses.
+     - **CitationsPanel**: Show source chunks with URL and chunk IDs.
+     - **ErrorNotifier**: Display errors, constitutional refusals, or insufficient context warnings.
+
+3. **Backend API Integration**
+   - Connect to Phase 3 backend endpoints (`/api/answer`) using `fetch` or `axios`.
+   - Handle:
+     - Success responses with `AgentOutput`
+     - Insufficient context or selected-text-only refusals
+     - API errors gracefully
+
+4. **State Management**
+   - Use React `useState` and `useEffect` hooks for local state management.
+   - Optional: Use React Context API if multiple components require shared state.
+
+5. **Styling**
+   - Use Docusaurus theme for consistency.
+   - Optional: Tailwind CSS or CSS modules for custom styling.
+
+6. **Security & Validation**
+   - Validate user inputs before sending requests.
+   - Avoid exposing API keys on the frontend.
+   - Implement rate limiting or debounce to prevent API abuse.
+
+7. **Testing**
+   - Unit tests for React components (QueryInput, ResponseViewer, CitationsPanel).
+   - Integration tests for API calls.
+   - Ensure deterministic behavior with fixed prompts and selected-text-only enforcement.
+
+8. **Deployment**
+   - Ensure the interactive page builds with the Docusaurus site.
+   - Deploy to the same hosting environment as the book (e.g., GitHub Pages, Vercel).
+
+---
+
+## Key Notes
+
+- Phase 4 must **extend the existing book** rather than creating a separate project.
+- Phase 4 should **consume ContextBundle objects** generated from Phase 2 via Phase 3 agent.
+- All responses must **adhere to the constitutional compliance rules** defined in Phase 3 (zero hallucination, explicit refusals, deterministic behavior, citation tracking).
+
+---
+
+## Deliverables
+
+- `/Physical-AI-and-Humanoid-Robotics/src/pages/query.js` (or `.tsx`) interactive page.
+- React components for query input, response display, and citations.
+- API integration and proper error handling.
+- Unit and integration tests.
+- Documentation update in the book explaining how to use the interactive feature.

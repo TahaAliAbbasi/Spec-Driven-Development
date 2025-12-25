@@ -4,6 +4,9 @@
  * work well for content-centric websites.
  */
 
+/* Import floating chatbot styles */
+@import './floating-chatbot.css';
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2e8555;
@@ -27,4 +30,30 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* 1. Import the specialized Urdu font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
+/* 2. Global Urdu Typography */
+[lang='ur'] {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  line-height: 2.2; /* Increased slightly for Nastaliq script */
+  font-size: 105%;
+}
+
+/* 3. Logical Alignment (Cleaner than forcing 'right') */
+html[dir="rtl"] {
+  text-align: start;
+}
+
+/* 4. Fix for Sidebar and Arrows */
+html[dir="rtl"] .menu__caret:before {
+  transform: rotate(180deg); /* Flips the arrow direction */
+}
+
+/* 5. Fix for Admonitions (Notes, Cautions) border */
+html[dir="rtl"] .theme-admonition {
+  border-left: none;
+  border-right: var(--ifm-alert-border-left-width) solid var(--ifm-alert-border-color);
 }

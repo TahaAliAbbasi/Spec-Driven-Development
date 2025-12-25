@@ -1,0 +1,194 @@
+ Phase 3 Revision: OpenRouter-Based Agent Orchestration
+
+You are tasked with **updating Phase 3 (Agent-Based Response Generation & Orchestration)** of the unified book project.
+
+The project previously used **Gemini as the LLM provider** via a compatibility adapter.  
+This revision **replaces Gemini with OpenRouter** as the LLM provider in order to:
+
+- Use **GPT-class models** (e.g., gpt-4.1, gpt-4o, gpt-3.5-turbo)
+- Maintain **native compatibility with OpenAI Agents SDK**
+- Simplify provider integration
+- Improve reliability, determinism, and tooling support
+
+---
+
+## High-Level Architectural Change
+
+### Before
+OpenAI Agents SDK
+↓
+Gemini Compatibility Adapter
+↓
+Gemini API
+
+
+
+### After
+OpenAI Agents SDK
+↓
+OpenRouter Provider Adapter
+↓
+GPT-class Models (via OpenRouter)
+
+---
+
+## Scope of Change
+
+This specification **only modifies Phase 3**.  
+All other phases (Phase 1: ingestion, Phase 2: retrieval, Phase 4: frontend integration) remain unchanged.
+
+---
+
+## Updated Requirements
+
+### 1. LLM Provider
+
+- Replace **Gemini API** with **OpenRouter API**
+- Use OpenRouter to access **OpenAI-compatible GPT models**
+- OpenRouter must be treated as an **OpenAI-compatible provider**
+- No Gemini code, adapters, or configuration should remain
+
+### 2. Environment Configuration
+
+Replace all Gemini-related variables with:
+
+```env
+OPENROUTER_API_KEY=
+OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+OPENROUTER_MODEL=gpt-4.1-mini
+Model selection must be configurable via environment variables
+
+No hardcoded model names are allowed in code
+
+Agent SDK Integration
+Use OpenAI Agents SDK as the orchestration framework
+
+Configure the SDK to communicate with OpenRouter via:
+
+Custom base_url
+
+OpenRouter API key
+
+The SDK must behave as if communicating with a standard OpenAI endpoint
+
+Required Modifications to Phase 3 Tasks
+Provider Adapter Changes
+Remove all Gemini-specific logic
+
+Implement OpenRouterProviderAdapter with:
+
+OpenAI-compatible request/response format
+
+OpenRouter authentication headers
+
+Model routing via environment variables
+
+Deterministic generation (temperature = 0)
+
+Explicit timeout and retry handling
+
+RAG Agent Behavior
+RAGAnswerAgent must:
+
+Use GPT-class models via OpenRouter
+
+Enforce zero hallucination
+
+Generate answers strictly from the provided ContextBundle
+
+Refuse to answer when context is insufficient
+
+Track used chunks for citation purposes
+
+Operate in single-pass generation mode only
+
+Constitutional Compliance (Mandatory)
+The following rules MUST be enforced without exception:
+
+No Retrieval Inside the LLM
+
+The model must never fetch, infer, or assume external knowledge
+
+Context-Only Answering
+
+All answers must be grounded solely in ContextBundle content
+
+Deterministic Outputs
+
+Fixed system prompt
+
+temperature = 0
+
+Explicit Refusal Behavior
+
+Structured refusal when context is insufficient
+
+Selected-Text-Only Mode Enforcement
+
+Refusal when ContextBundle.status ≠ "success"
+
+Required Outputs
+Update Phase 3 to include:
+
+OpenRouter provider adapter specification
+
+Updated agent initialization using OpenAI Agents SDK
+
+Revised environment configuration
+
+Updated error handling logic
+
+Updated test cases validating:
+
+Determinism
+
+Zero hallucination
+
+Citation accuracy
+
+Proper refusal behavior
+
+Explicit Exclusions
+Do NOT introduce Next.js, React, or a new frontend
+
+Do NOT modify Phase 2 retrieval logic
+
+Do NOT embed API keys in frontend code
+
+Do NOT use Gemini or any Gemini SDKs
+
+Success Criteria
+Phase 3 is complete when:
+
+All agent responses are generated using OpenRouter GPT models
+
+OpenAI Agents SDK runs without compatibility hacks
+
+Hallucinations are impossible by design
+
+All Phase 3 acceptance tests pass
+
+The system is ready for Phase 4 frontend integration
+
+Output Format
+Produce the following:
+
+Updated Phase 3 task list
+
+Updated architecture notes
+
+OpenRouterProviderAdapter specification
+
+Updated environment configuration section
+
+Gemini → OpenRouter migration notes
+
+markdown
+Copy code
+
+---
+
+✅ This is **copy-paste ready**  
+✅ Optimized for **Spec-Kit Plus**  
+✅ Fully aligned with **OpenAI Agents SDK**  
+✅ Safe, deterministic, and future-proof

@@ -1,0 +1,304 @@
+You are an expert AI systems architect specializing in
+Spec-Driven Development (SDD), RAG architectures, and
+constitutionally-governed agent systems.
+
+Your task is to REFINE and IMPROVE the following
+Phase-3 implementation plan while strictly preserving
+its scope and intent.
+
+────────────────────────────────────────────
+CONTEXT & CONSTRAINTS (MANDATORY)
+────────────────────────────────────────────
+
+1. This is Phase 3 ONLY:
+   - Agent-based response generation
+   - Context consumption ONLY (no retrieval)
+   - Input is a ContextBundle from Phase 2
+
+2. The system MUST:
+   - Enforce Zero Hallucination
+   - Be deterministic and auditable
+   - Respect Selected-Text-Only answering
+   - Produce citation-grounded answers
+
+3. AGENT ORCHESTRATION REQUIREMENT:
+   - The system MUST use OpenAI Agents SDK
+   - OpenAI Agents SDK is used as the orchestration
+     and agent-control layer ONLY
+
+4. MODEL PROVIDER REQUIREMENT:
+   - The underlying LLM provider is Gemini
+   - Gemini is accessed via a provider adapter
+     compatible with OpenAI Agents SDK
+   - OpenAI API keys are NOT required
+   - Gemini API key is used instead
+
+5. IMPORTANT DISTINCTION (YOU MUST PRESERVE THIS):
+   - OpenAI Agents SDK ≠ OpenAI models
+   - Agents SDK is used for:
+       • agent lifecycle
+       • tool orchestration
+       • message control
+       • determinism
+       • safety enforcement
+   - Gemini is used ONLY as the text-generation engine
+
+6. The plan MUST:
+   - Explicitly document this compatibility layer
+   - Avoid any architectural contradictions
+   - Avoid mentioning “OpenAI models” as a hard dependency
+   - Clearly state that the model provider is swappable
+
+────────────────────────────────────────────
+REQUIRED IMPROVEMENTS
+────────────────────────────────────────────
+
+Improve the plan by doing ALL of the following:
+
+1. Fix architectural clarity:
+   - Clearly explain how Gemini integrates under
+     OpenAI Agents SDK (adapter / provider abstraction)
+
+2. Strengthen determinism guarantees:
+   - Fixed prompts
+   - Temperature = 0
+   - Single-pass generation
+   - No autonomous planning
+   - Deterministic chunk ordering
+
+3. Strengthen constitutional enforcement:
+   - Explicit refusal rules
+   - Strict grounding per sentence
+   - No retrieval, no memory, no tool discovery
+
+4. Improve selected-text-only enforcement logic:
+   - Based on request mode, not status alone
+
+5. Add an explicit "NO RETRIEVAL" hard guard:
+   - Agent cannot fetch, search, or infer beyond context
+
+6. Keep the plan implementation-ready:
+   - Clear data models
+   - Clear API contracts
+   - Clear agent responsibilities
+
+────────────────────────────────────────────
+OUTPUT FORMAT
+────────────────────────────────────────────
+
+Return a CLEAN, FINAL, evaluator-ready
+Phase-3 Implementation Plan that:
+
+- Uses precise technical language
+- Is internally consistent
+- Explicitly states:
+  “OpenAI Agents SDK is used as an orchestration layer,
+   while Gemini is the underlying language model provider.”
+
+DO NOT:
+- Add Phase-4 or Phase-5 content
+- Introduce new features
+- Change system scope
+
+ONLY improve clarity, correctness, and rigor.
+
+Here is the Phase-3 plan to improve:
+<<<
+# Implementation Plan: Phase 3 - Agent-Based Response Generation & Orchestration
+
+**Feature**: Phase 3 - Agent-Based Response Generation & Orchestration
+**Created**: 2025-12-13
+**Status**: Draft
+**Author**: Claude Code
+
+## Technical Context
+
+The Phase 3 implementation involves creating an agent-based response generation system that consumes ContextBundle objects from Phase 2 and generates constitutionally-compliant responses using OpenAI Agents SDK. The system will be built with FastAPI and will enforce zero hallucination policy by strictly grounding responses in retrieved context.
+
+The system architecture centers around a primary RAGAnswerAgent that receives user queries and ContextBundles, then generates responses with proper source citations. The agent will operate with deterministic behavior using fixed system prompts and constrained randomness.
+
+**Known Unknowns**:
+- Specific OpenAI model selection for the agent
+- Exact token limits for response generation
+- Detailed error handling strategies beyond basic requirements
+
+## Constitution Check
+
+This implementation must comply with the Global Constitution v2.0.0:
+
+✅ **II. Zero Hallucination Policy**: The system will generate responses ONLY based on provided ContextBundles, with explicit refusal when context is insufficient.
+
+✅ **III. Deterministic, Explainable AI Behavior**: The system will provide clear attribution to source material in all responses.
+
+✅ **XII. Selected-Text-Only Answering**: The system will enforce selected-text-only mode when ContextBundle.status ≠ "success".
+
+✅ **XIII. Fallback Responses**: The system will return explicit insufficiency responses when context is insufficient.
+
+✅ **XIX. Mandatory Tech Stack Usage**: The system will use FastAPI for the backend as required.
+
+## Gates
+
+- [X] Constitutional compliance: All constitutional requirements are addressed
+- [X] Scope alignment: Implementation aligns with Phase 3 requirements
+- [X] Interface compatibility: System can consume ContextBundle objects from Phase 2
+- [X] Architecture feasibility: OpenAI Agents SDK can implement required functionality
+
+---
+
+## Phase 0: Research & Analysis
+
+### Research Tasks
+
+1. **OpenAI Agents SDK Integration**
+   - Research: How to implement RAG agents with OpenAI Agents SDK
+   - Research: Best practices for deterministic agent behavior
+   - Research: Proper citation handling in agent responses
+
+2. **FastAPI Integration**
+   - Research: FastAPI patterns for agent-based systems
+   - Research: Error handling best practices for agent systems
+   - Research: Request/response validation with Pydantic models
+
+3. **Constitutional Compliance Implementation**
+   - Research: Techniques for enforcing zero hallucination in agent responses
+   - Research: Methods for ensuring deterministic behavior
+   - Research: Source attribution patterns in RAG systems
+
+### Decision Log
+
+**Decision**: Use OpenAI GPT-4 or GPT-3.5-turbo as the underlying model for the RAG agent
+**Rationale**: These models provide good balance of capability and cost while supporting the required functionality
+**Alternatives considered**: Custom models, other provider models
+
+**Decision**: Implement deterministic behavior through fixed system prompts and temperature=0
+**Rationale**: This ensures consistent outputs for identical inputs as required by the specification
+**Alternatives considered**: Using random seeds, other constraint mechanisms
+
+---
+
+## Phase 1: Design & Architecture
+
+### Data Models
+
+#### AgentInput
+- query: str - The user's question/query
+- context_bundle: ContextBundle - The context bundle from Phase 2
+- mode: str - Either "global" or "selected_text_only"
+
+#### AgentOutput
+- answer: str - The generated answer text
+- citations: List[ChunkReference] - List of source citations
+- used_chunks: List[str] - List of chunk IDs used in the response
+- status: str - "answered" | "insufficient_context" | "refused"
+- warnings: Optional[List[str]] - Optional warnings
+
+#### ChunkReference
+- chunk_id: str - ID of the referenced chunk
+- source_url: str - URL of the source document
+
+### API Contracts
+
+#### POST `/api/answer`
+**Request Body**:
+```json
+{
+  "query": "str",
+  "context_bundle": { /* ContextBundle from Phase 2 */ },
+  "mode": "global"
+}
+```
+
+**Response**:
+```json
+{
+  "answer": "Generated answer text",
+  "citations": [
+    {
+      "chunk_id": "chunk_123",
+      "source_url": "https://example.com/source"
+    }
+  ],
+  "used_chunks": ["chunk_123", "chunk_456"],
+  "status": "answered",
+  "warnings": ["optional warnings"]
+}
+```
+
+**Error Responses**:
+- 400: Invalid input format
+- 422: Constitutional violation (e.g., context insufficient for selected-text-only mode)
+- 500: Agent failure
+
+### System Architecture
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   User Query    │───▶│  RAGAnswerAgent │───▶│   Response      │
+│   & Context     │    │                 │    │   with Citations│
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │
+                       ┌─────────────────┐
+                       │   Gemini API    │
+                       │ (gemini model)  │
+                       └─────────────────┘
+```
+
+### Component Design
+
+1. **RAGAnswerAgent**: Primary agent for response generation
+   - Receives AgentInput
+   - Processes context and query
+   - Generates response with citations
+   - Returns AgentOutput
+
+2. **FastAPI Controller**: Handles API requests
+   - Validates input
+   - Orchestrates agent execution
+   - Returns structured responses
+
+3. **Constitutional Validator**: Ensures compliance
+   - Checks context sufficiency
+   - Validates selected-text-only mode
+   - Enforces zero hallucination policy
+
+---
+
+## Phase 2: Implementation Approach
+
+### Development Strategy
+1. Set up FastAPI application structure
+2. Implement data models and validation
+3. Create RAGAnswerAgent with OpenAI integration
+4. Implement constitutional compliance checks
+5. Add API endpoints with proper error handling
+6. Add logging and observability
+7. Create comprehensive tests
+
+### Quality Assurance
+- Unit tests for all core components
+- Integration tests for API endpoints
+- Constitutional compliance validation tests
+- Performance testing for response times
+- Determinism verification tests
+
+### Security Considerations
+- Input validation to prevent injection attacks
+- Proper error handling to avoid information leakage
+- Rate limiting for API endpoints
+- Secure handling of API keys
+
+### Performance Considerations
+- Efficient context processing
+- Caching for frequently accessed data
+- Proper timeout handling for API calls
+- Resource optimization for agent operations
+
+## Re-evaluation of Constitution Check
+
+After design completion, all constitutional requirements remain satisfied:
+- Zero hallucination policy is enforced through context-bound generation
+- Deterministic behavior is achieved through fixed prompts and temperature constraints
+- Selected-text-only mode is enforced by checking ContextBundle status
+- Source attribution is implemented through citation tracking
+- FastAPI backend aligns with required tech stack
+>>>

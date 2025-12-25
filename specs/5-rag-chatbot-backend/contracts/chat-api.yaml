@@ -1,0 +1,350 @@
+openapi: 3.0.3
+info:
+  title: RAG Chatbot API
+  description: API for the RAG Chatbot Backend Integration
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /api/chat:
+    post:
+      summary: Main chat endpoint managed by agent
+      description: Process user query and return AI-generated response with citations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The user's query text
+                  example: "What are the key principles of humanoid robotics?"
+                session_id:
+                  type: string
+                  description: Optional session ID for maintaining conversation context
+                  example: "session-12345"
+      responses:
+        '200':
+          description: Successful response with AI-generated answer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: The AI-generated response text
+                    example: "Humanoid robotics is based on several key principles..."
+                  confidence_score:
+                    type: number
+                    format: float
+                    minimum: 0.0
+                    maximum: 1.0
+                    description: Confidence level of the response
+                    example: 0.85
+                  citations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Citation'
+                  session_id:
+                    type: string
+                    description: The session ID for continued conversation
+                    example: "session-12345"
+        '400':
+          description: Bad request - invalid input
+        '500':
+          description: Internal server error
+      security:
+        - api_key: []
+
+  /api/retrieve:
+    post:
+      summary: Context retrieval (existing functionality)
+      description: Retrieve relevant context from the vector database based on query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrievalRequest'
+      responses:
+        '200':
+          description: Retrieved context bundle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContextBundle'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /api/answer:
+    post:
+      summary: Response generation (existing functionality)
+      description: Generate response based on query and context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentInput'
+      responses:
+        '200':
+          description: Generated response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentOutput'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /api/health:
+    get:
+      summary: Health check for unified service
+      description: Check the health status of the backend service
+      responses:
+        '200':
+          description: Health status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, unhealthy]
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-12-24T10:00:00Z"
+                  service:
+                    type: string
+                    example: "chatbot-backend"
+                  dependencies:
+                    type: object
+                    properties:
+                      qdrant:
+                        type: string
+                        example: "connected"
+                      openai:
+                        type: string
+                        example: "available"
+
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  schemas:
+    UserQuery:
+      type: object
+      required:
+        - query_text
+      properties:
+        query_text:
+          type: string
+          description: The user's query text
+          example: "What are the key principles of humanoid robotics?"
+        session_id:
+          type: string
+          description: Session identifier for conversation context
+          example: "session-12345"
+        timestamp:
+          type: string
+          format: date-time
+          description: When the query was submitted
+
+    RetrievedContext:
+      type: object
+      properties:
+        content:
+          type: string
+          description: The content of the retrieved chunk
+          example: "Humanoid robots are designed to resemble and mimic human behavior..."
+        source_url:
+          type: string
+          format: uri
+          description: URL where the content originated
+          example: "https://physical-ai-and-humanoid-robotics-lemon.vercel.app/humanoid-design"
+        chapter:
+          type: string
+          description: Chapter identifier
+          example: "design-principles"
+        section:
+          type: string
+          description: Section identifier
+          example: "introduction"
+        chunk_id:
+          type: string
+          description: Unique identifier for this chunk
+          example: "chunk-abc123"
+        relevance_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Similarity score
+          example: 0.87
+        token_count:
+          type: integer
+          description: Number of tokens in the content
+          example: 150
+
+    GeneratedResponse:
+      type: object
+      properties:
+        response_text:
+          type: string
+          description: The AI-generated response text
+          example: "Humanoid robotics is based on several key principles..."
+        confidence_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Confidence level of the response
+          example: 0.85
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+        timestamp:
+          type: string
+          format: date-time
+          description: When the response was generated
+
+    Citation:
+      type: object
+      properties:
+        source_url:
+          type: string
+          format: uri
+          description: URL of the source document
+          example: "https://physical-ai-and-humanoid-robotics-lemon.vercel.app/humanoid-design"
+        chapter:
+          type: string
+          description: Chapter identifier
+          example: "design-principles"
+        section:
+          type: string
+          description: Section identifier
+          example: "introduction"
+        content_snippet:
+          type: string
+          description: Brief excerpt from the source
+          example: "Humanoid robots are designed to resemble and mimic human behavior..."
+        relevance_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: How relevant this citation is to the response
+          example: 0.92
+
+    RetrievalRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Query text for context retrieval
+          example: "What are the key principles of humanoid robotics?"
+        selected_text:
+          type: string
+          description: Optional selected text instead of query
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 5
+          description: Number of results to retrieve
+        chapter_filter:
+          type: string
+          description: Optional filter by chapter
+        section_filter:
+          type: string
+          description: Optional filter by section
+        language_constraint:
+          type: string
+          default: "en"
+          description: Language constraint for results
+        version_constraint:
+          type: string
+          default: "1.0"
+          description: Version constraint for results
+
+    ContextBundle:
+      type: object
+      properties:
+        retrieved_chunks:
+          type: array
+          items:
+            $ref: '#/components/schemas/RetrievedContext'
+        metadata:
+          type: object
+          properties:
+            query_type:
+              type: string
+              enum: [standard, selected_text]
+            processing_time_ms:
+              type: integer
+              description: Time taken to process in milliseconds
+            original_top_k:
+              type: integer
+              description: Original top_k value requested
+            returned_count:
+              type: integer
+              description: Number of results actually returned
+        status:
+          type: string
+          enum: [success, partial, no_matches, error]
+          description: Status of the retrieval operation
+        total_tokens:
+          type: integer
+          description: Total number of tokens in the retrieved context
+
+    AgentInput:
+      type: object
+      properties:
+        query:
+          type: string
+          description: User query text
+        context_bundle:
+          $ref: '#/components/schemas/ContextBundle'
+        mode:
+          type: string
+          enum: [standard, citation, concise]
+          default: standard
+          description: Response generation mode
+
+    AgentOutput:
+      type: object
+      properties:
+        response:
+          type: string
+          description: Generated response text
+        status:
+          type: string
+          enum: [success, partial, error]
+          description: Status of the generation
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+        confidence_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Confidence level of the response

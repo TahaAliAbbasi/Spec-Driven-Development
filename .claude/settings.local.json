@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"Physical-AI-and-Humanoid-Robotics\\\\i18n\\\\ur\\\\docusaurus-plugin-content-docs\\\\current\\\\module4\")",
+      "Bash(dir \"Physical-AI-and-Humanoid-Robotics\\\\docs\\\\module2\\\\labs\")"
+    ]
+  }
+}
