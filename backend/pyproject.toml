@@ -3,25 +3,20 @@ name = "rag-chatbot-backend"
 version = "1.0.0"
 description = "RAG Chatbot Backend Integration with OpenAI Agent Controller"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.13"
 dependencies = [
-    "beautifulsoup4>=4.14.3",
-    "cohere>=5.20.0",
     "fastapi>=0.115.6",
+    "pydantic==2.10.3",
+    "pydantic-core==2.27.1",
     "openai>=1.57.4",
     "python-dotenv>=1.2.1",
+    "uvicorn>=0.36.2",
+    "beautifulsoup4>=4.14.3",
+    "cohere>=5.20.0",
     "qdrant-client>=1.16.2",
     "requests>=2.32.5",
-    "uvicorn>=0.36.2",
-    "pydantic>=2.10.3",
     "httpx>=0.28.0"
 ]
 
-# --- ADD THIS SECTION ---
 [tool.uv]
 package = false
-
-# --- REMOVE OR COMMENT THIS OUT ---
-# [build-system]
-# requires = ["setuptools>=61.0"]
-# build-backend = "setuptools"
