@@ -17,6 +17,11 @@ dependencies = [
     "httpx>=0.28.0"
 ]
 
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools"
+# --- ADD THIS SECTION ---
+[tool.uv]
+package = false
+
+# --- REMOVE OR COMMENT THIS OUT ---
+# [build-system]
+# requires = ["setuptools>=61.0"]
+# build-backend = "setuptools"
