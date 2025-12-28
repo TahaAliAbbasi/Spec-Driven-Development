@@ -1,5 +1,5 @@
 """
-Script to scrape the website and store embeddings in Qdrant
+Script to scrape the website and store embeddings in Qdrant with detailed output
 """
 import requests
 from bs4 import BeautifulSoup
@@ -33,7 +33,9 @@ def scrape_page(url: str) -> Dict[str, Any]:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
 
-        soup = BeautifulSoup(response.content, 'html.parser')
+        # Properly handle encoding
+        response.encoding = response.apparent_encoding
+        soup = BeautifulSoup(response.text, 'html.parser')
 
         # Remove script and style elements
         for script in soup(["script", "style"]):
@@ -50,6 +52,12 @@ def scrape_page(url: str) -> Dict[str, Any]:
         lines = (line.strip() for line in content.splitlines())
         chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
         content_text = ' '.join(chunk for chunk in chunks if chunk)
+
+        print(f"Scraped URL: {url}")
+        print(f"Title: {title_text}")
+        print(f"Content preview: {content_text[:200]}...")
+        print(f"Content length: {len(content_text)} characters")
+        print("-" * 50)
 
         return {
             'url': url,
@@ -90,11 +98,13 @@ def create_embeddings(texts: List[str]) -> List[List[float]]:
     Create embeddings for a list of texts using Cohere
     """
     try:
+        print(f"Creating embeddings for {len(texts)} text chunks...")
         response = cohere_client.embed(
             texts=texts,
             model="embed-multilingual-v3.0",
             input_type="search_document"
         )
+        print(f"Successfully created {len(response.embeddings)} embeddings")
         return response.embeddings
     except Exception as e:
         print(f"Error creating embeddings: {str(e)}")
@@ -108,51 +118,55 @@ def store_in_qdrant(data_list: List[Dict[str, Any]]):
 
     # Check if collection exists, create if it doesn't
     try:
-        qdrant_client.get_collection(collection_name)
-        print(f"Collection {collection_name} exists")
+        collection_info = qdrant_client.get_collection(collection_name)
+        print(f"Collection {collection_name} exists with {collection_info.points_count} points")
+        # Clear existing points
+        qdrant_client.delete_collection(collection_name)
+        print(f"Deleted existing collection {collection_name}")
     except:
-        print(f"Creating collection {collection_name}")
-        qdrant_client.create_collection(
-            collection_name=collection_name,
-            vectors_config=VectorParams(size=1024, distance=Distance.COSINE),  # Cohere v3 returns 1024-dim vectors
-        )
+        print(f"Collection {collection_name} does not exist, will create it")
 
-    points = []
+    # Create collection
+    qdrant_client.create_collection(
+        collection_name=collection_name,
+        vectors_config=VectorParams(size=1024, distance=Distance.COSINE),  # Cohere v3 returns 1024-dim vectors
+    )
+    print(f"Created collection {collection_name}")
+
+    all_texts = []
+    all_metadata = []
+
     for i, data in enumerate(data_list):
         # Chunk the content
         content_chunks = chunk_text(data['content'])
+        print(f"Page {i+1}: Chunked content into {len(content_chunks)} chunks")
 
         for j, chunk in enumerate(content_chunks):
-            # Create embedding for the chunk
-            embedding = create_embeddings([chunk])
-            if not embedding:
-                continue
-
-            vector = embedding[0]
-
-            # Create a numeric ID for this chunk
-            point_id = len(points)  # Use sequential numeric IDs
-
-            # Prepare payload
-            payload = {
+            all_texts.append(chunk)
+            all_metadata.append({
                 'content': chunk,
                 'source_url': data['url'],
                 'title': data['title'],
                 'chunk_id': f"{i}_{j}",
                 'token_count': len(chunk.split())
-            }
+            })
 
-            # Add to points
+    # Create all embeddings at once
+    if all_texts:
+        embeddings = create_embeddings(all_texts)
+
+        # Prepare points
+        points = []
+        for idx, (embedding, metadata) in enumerate(zip(embeddings, all_metadata)):
             points.append(
                 models.PointStruct(
-                    id=point_id,
-                    vector=vector,
-                    payload=payload
+                    id=idx,  # Use numeric ID
+                    vector=embedding,
+                    payload=metadata
                 )
             )
 
-    # Upload points to Qdrant
-    if points:
+        # Upload points to Qdrant
         print(f"Uploading {len(points)} points to Qdrant...")
         qdrant_client.upload_points(
             collection_name=collection_name,
@@ -160,34 +174,18 @@ def store_in_qdrant(data_list: List[Dict[str, Any]]):
         )
         print(f"Successfully uploaded {len(points)} points to Qdrant")
 
-def crawl_website(base_url: str) -> List[Dict[str, Any]]:
+def get_qdrant_stats():
     """
-    Crawl the website and extract all pages
+    Get statistics about the Qdrant collection
     """
-    print(f"Starting to crawl: {base_url}")
-
-    # For now, just scrape the main page since we don't know the site structure
-    pages_data = []
-
-    # Scrape the main page
-    main_page = scrape_page(base_url)
-    if main_page:
-        pages_data.append(main_page)
-
-    # If the site has more pages, you would add them here
-    # For example, if there are specific URLs you want to scrape:
-    # additional_urls = [
-    #     f"{base_url}/page1",
-    #     f"{base_url}/page2",
-    #     # Add more URLs as needed
-    # ]
-    #
-    # for url in additional_urls:
-    #     page_data = scrape_page(url)
-    #     if page_data:
-    #         pages_data.append(page_data)
-
-    return pages_data
+    collection_name = os.getenv("QDRANT_COLLECTION_NAME", "physical_ai_humanoid_docs_v3")
+    try:
+        collection_info = qdrant_client.get_collection(collection_name)
+        print(f"Collection stats: {collection_info.points_count} points")
+        return collection_info.points_count
+    except Exception as e:
+        print(f"Error getting collection stats: {str(e)}")
+        return 0
 
 def main():
     """
@@ -197,8 +195,14 @@ def main():
 
     print("Starting website scraping process...")
 
+    # Get initial stats
+    initial_count = get_qdrant_stats()
+
     # Crawl the website
-    pages_data = crawl_website(website_url)
+    pages_data = []
+    main_page = scrape_page(website_url)
+    if main_page:
+        pages_data.append(main_page)
 
     if not pages_data:
         print("No pages were scraped successfully")
@@ -208,6 +212,10 @@ def main():
 
     # Store in Qdrant
     store_in_qdrant(pages_data)
+
+    # Get final stats
+    final_count = get_qdrant_stats()
+    print(f"Added {final_count - initial_count} new points to Qdrant")
 
     print("Website scraping and embedding process completed!")
 

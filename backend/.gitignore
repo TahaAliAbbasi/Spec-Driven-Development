@@ -51,5 +51,4 @@ htmlcov/
 Thumbs.db
 
 # Backend specific
-uv.lock
-*.lock
+!uv.lock

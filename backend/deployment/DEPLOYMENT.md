@@ -44,25 +44,38 @@ This document provides instructions for deploying the RAG Chatbot Backend servic
 
 ### Environment Variables
 
-Create a `.env` file in the deployment directory:
+Create a `.env` file in the deployment directory or use environment variables directly. For local development, you can use the provided script:
 
-```env
-OPENAI_API_KEY=your_openai_api_key
-COHERE_API_KEY=your_cohere_api_key
-QDRANT_API_KEY=your_qdrant_api_key
-QDRANT_URL=your_qdrant_url
-QDRANT_COLLECTION_NAME=physical_ai_humanoid_docs_v3
-FRONTEND_API_KEY=your_frontend_api_key
-PORT=8000
-LOG_LEVEL=INFO
-MAX_CONTEXT_TOKENS=4000
-RATE_LIMIT_REQUESTS=100
-RATE_LIMIT_WINDOW=60
-SESSION_TIMEOUT_MINUTES=30
-DEFAULT_CONFIDENCE_THRESHOLD=0.7
-OPENAI_MODEL=gpt-4-turbo
-COHERE_MODEL=embed-multilingual-v3.0
+```bash
+cd backend
+./scripts/prepare-deployment.sh
 ```
+
+The script will create a .env file from .env.example if one doesn't exist.
+
+### Required Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `OPENAI_API_KEY` | Your OpenAI API key | - |
+| `COHERE_API_KEY` | Your Cohere API key | - |
+| `QDRANT_API_KEY` | Your Qdrant API key | - |
+| `QDRANT_URL` | Your Qdrant URL | - |
+| `QDRANT_COLLECTION_NAME` | Name of the Qdrant collection | `physical_ai_humanoid_docs_v3` |
+| `FRONTEND_API_KEY` | API key for frontend authentication | - |
+| `PORT` | Port to run the service on | `8000` |
+| `LOG_LEVEL` | Logging level (DEBUG, INFO, WARNING, ERROR) | `INFO` |
+| `MAX_CONTEXT_TOKENS` | Maximum tokens for context | `4000` |
+| `RATE_LIMIT_REQUESTS` | Rate limit requests per window | `100` |
+| `RATE_LIMIT_WINDOW` | Rate limit window in seconds | `60` |
+| `SESSION_TIMEOUT_MINUTES` | Session timeout in minutes | `30` |
+| `DEFAULT_CONFIDENCE_THRESHOLD` | Minimum confidence threshold | `0.7` |
+| `OPENAI_MODEL` | OpenAI model to use | `gpt-4-turbo` |
+| `COHERE_MODEL` | Cohere model to use | `embed-multilingual-v3.0` |
+| `ALLOWED_ORIGINS` | Comma-separated list of allowed origins for CORS | - |
+
+### Security Note
+Never commit actual API keys to the repository. The .env file is already included in .gitignore to prevent accidental commits.
 
 ## Kubernetes Deployment
 
